@@ -26,8 +26,7 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		".next/types/**/*.ts",
-		"postcss.config.ts"
-	],
+		".next/types/**/*.ts"
+, "src/app/fontawesome.ts"	],
 	"exclude": ["node_modules"]
 }

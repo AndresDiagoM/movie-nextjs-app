@@ -19,9 +19,17 @@
 		}
 	},
 	"explorer.fileNesting.patterns": {
-		"next.config.ts": "tsconfig.*.json, tsconfig.json, postcss.config.ts, tailwind.config.ts",
+		"next.config.ts": "tsconfig.*.json, tsconfig.json, postcss.config.mjs, tailwind.config.ts",
 		"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
 		".gitignore": ".prettierrc,.editorconfig, .prettierignore, .eslintignore, .eslintrc.*, .env, .env.*, next-env.d.ts",
 		"README.md": "README.serverless.md, serverless.yml, secrets_manager.yml"
-	}
+	},
+	"cSpell.words": [
+		"facebook",
+		"Flix",
+		"fontawesome",
+		"fortawesome",
+		"instagram",
+		"linkedin"
+	]
 }
