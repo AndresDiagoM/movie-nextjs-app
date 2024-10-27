@@ -1,0 +1,52 @@
+## MORE INFO OF TMDB: https://developer.themoviedb.org/reference
+## https://github.com/Huachao/vscode-restclient
+
+# @tmdb_host = https://api.themoviedb.org/3/movie
+@tmdb_token_env = {{$dotenv NEXT_PUBLIC_TMDB_TOKEN}}
+
+#--------------------------------------------------
+#------------------- Movies -----------------------
+
+### GET /popular  ?api_key={{tmdb_token}}
+GET {{tmdb_host}}/3/movie/popular
+Authorization: Bearer {{tmdb_token_env}}
+
+## use the images with https://image.tmdb.org/t/p/w185/wTnV3PCVW5O92JMrFvvrRcV39RU.jpg
+
+
+### GET /discover 
+GET {{tmdb_host}}/3/discover/movie?include_adult=true&include_video=true&language=en-US&page=1&sort_by=popularity.desc
+Authorization: Bearer {{tmdb_token_env}}
+
+
+### GET /genre/movies
+GET {{tmdb_host}}/3/genre/movie/list?language=en
+Authorization: Bearer {{tmdb_token_env}}
+
+
+#--------------------------------------------------
+#------------------- List movies ------------------
+
+### GET /now_playing
+GET {{tmdb_host}}/3/movie/now_playing?language=en-US&page=1
+Authorization: Bearer {{tmdb_token_env}}
+
+# now_playing is a discover like /discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}'
+
+### GET /popular
+GET {{tmdb_host}}/3/movie/popular?language=en-US&page=1
+Authorization: Bearer {{tmdb_token_env}}
+
+# popular is also a discover behind the scenes like /discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc
+
+### GET /top_rated
+GET {{tmdb_host}}/3/movie/top_rated?language=en-US&page=1
+Authorization: Bearer {{tmdb_token_env}}
+
+# discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200
+
+### GET /upcoming
+GET {{tmdb_host}}/3/movie/upcoming?language=en-US&page=1
+Authorization: Bearer {{tmdb_token_env}}
+
+# discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}
