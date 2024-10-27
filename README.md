@@ -20,6 +20,51 @@ npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 
 This will install the latest version of Tailwind CSS, PostCSS, and Autoprefixer.
 
+
+## Folder Structure
+
+A scalable folder structure for a Next.js project should be organized in a way that promotes modularity, reusability, and maintainability. Here is a recommended folder structure:
+
+```bash
+/my-nextjs-app
+|-- /public
+|   |-- /images
+|   |-- /fonts
+|   |-- favicon.ico
+|
+|-- /src
+|   |-- /app
+|   |   |-- /components
+|   |   |   |-- /common
+|   |   |   |-- /layout
+|   |   |   |-- /pages
+|   |   |-- /hooks
+|   |   |-- /services
+|   |   |-- /styles
+|   |   |-- /utils
+|   |   |-- /pages
+|   |       |-- /api
+|   |       |-- /auth
+|   |       |-- /dashboard
+|   |       |-- _app.tsx
+|   |       |-- _document.tsx
+|   |       |-- index.tsx
+|
+|-- /tests
+|   |-- /unit
+|   |-- /integration
+|
+|-- .env
+|-- .eslintrc.json
+|-- .gitignore
+|-- next.config.js
+|-- package.json
+|-- README.md
+|-- tailwind.config.js
+|-- tsconfig.json
+```
+
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
