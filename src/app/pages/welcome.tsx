@@ -3,7 +3,7 @@ import {
 	FaGithub,
 	FaGlobe,
 	FaLinkedin,
-	FaSignInAlt,
+	// FaSignInAlt,
 	FaTwitter,
 } from "react-icons/fa";
 
@@ -18,61 +18,42 @@ const WelcomePage: React.FC = () => {
 
 			{/* Content */}
 			<div className="relative z-10 text-center text-white px-4 w-full h-full">
-				<nav className="flex justify-between items-center p-6 w-full max-w-6xl mx-auto">
-					<h1 className="text-xl font-bold">Sudo-Flix</h1>
-					<ul className="flex space-x-6">
-						<li>
-							<a href="#home" className="hover:underline">
-								Home
+				{/* <header>
+					<nav className="flex justify-between items-center p-6 w-full max-w-6xl mx-auto">
+						<h1 className="text-xl font-bold">Sudo-Flix</h1>
+						<ul className="flex space-x-6">
+							<li>
+								<a href="#home" className="hover:underline">
+									Home
+								</a>
+							</li>
+							<li>
+								<a href="#about" className="hover:underline">
+									Movies
+								</a>
+							</li>
+							<li>
+								<a href="#contact" className="hover:underline">
+									Series
+								</a>
+							</li>
+							<li>
+								<a href="#docs" className="hover:underline">
+									Trending
+								</a>
+							</li>
+						</ul>
+						<div className="flex space-x-4 items-center">
+							<a
+								href="#blocks"
+								className="flex ml-4 bg-white text-black py-2 px-4 rounded-full hover:bg-gray-200"
+							>
+								Login
+								<FaSignInAlt className="ml-2 w-full py-1" size="24px" />
 							</a>
-						</li>
-						<li>
-							<a href="#about" className="hover:underline">
-								Movies
-							</a>
-						</li>
-						<li>
-							<a href="#contact" className="hover:underline">
-								Series
-							</a>
-						</li>
-						<li>
-							<a href="#docs" className="hover:underline">
-								Trending
-							</a>
-						</li>
-					</ul>
-					<div className="flex space-x-4 items-center">
-						{/* <a
-							href="https://twitter.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FaTwitter className="text-2xl text-white" />
-						</a>
-						<a
-							href="https://facebook.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FaFacebook className="text-2xl text-white" />
-						</a>
-						<a
-							href="https://instagram.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<FaInstagram className="text-2xl text-white" />
-						</a> */}
-						<a
-							href="#blocks"
-							className="flex ml-4 bg-white text-black py-2 px-4 rounded-full hover:bg-gray-200"
-						>
-							Login
-							<FaSignInAlt className="ml-2 w-full py-1" size="24px" />
-						</a>
-					</div>
-				</nav>
+						</div>
+					</nav>
+				</header> */}
 
 				<div className="mt-20 max-w-3xl mx-auto">
 					<h1 className="text-5xl font-bold mb-6">
