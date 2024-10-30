@@ -5,12 +5,12 @@ export const metadata: Metadata = {
 	title: "Movie",
 };
 
-interface MoviesIdProps {
+interface MoviesProps {
 	params: { [key: string]: string };
 	searchParams: { [key: string]: string };
 }
 
-const MoviesId: React.FC<MoviesIdProps> = ({ params, searchParams }) => {
+const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 	return (
 		<div>
 			<h2>Movies ids</h2>

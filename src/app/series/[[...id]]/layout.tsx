@@ -8,7 +8,7 @@ export default function Layout({
 			<nav>
 				<ul>
 					<li>
-						<Link href="/">Navegación de home</Link>
+						<Link href="/">Navegacion de series ID</Link>
 					</li>
 				</ul>
 			</nav>
