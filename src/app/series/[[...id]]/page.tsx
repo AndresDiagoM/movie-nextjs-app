@@ -12,7 +12,7 @@ interface SeriesProps {
 
 const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
 	return (
-		<div>
+		<div className="pt-20">
 			<h2>Series ids</h2>
 			<p>Params: {JSON.stringify(params)}</p>
 			<p>Search Params: {JSON.stringify(searchParams)}</p>

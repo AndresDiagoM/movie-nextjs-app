@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const Movies: React.FC = () => {
 	return (
-		<div>
+		<div className="pt-20">
 			<h2>Movies</h2>
 		</div>
 	);

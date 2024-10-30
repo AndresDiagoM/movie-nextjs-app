@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import ClientLayout from "./client_layout";
+import ClientLayout from "./components/layout/ClientLayout";
 import "./globals.css";
 
 // Fonts

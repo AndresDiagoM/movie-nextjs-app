@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const Home: React.FC = () => {
 	return (
-		<div>
+		<div className="pt-5">
 			<h2>Homepage of Sudo-flix</h2>
 		</div>
 	);
