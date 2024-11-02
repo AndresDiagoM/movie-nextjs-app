@@ -65,3 +65,6 @@ Authorization: Bearer {{tmdb_token_env}}
 ### GET /{movie_id}
 GET {{tmdb_host}}/3/movie/912649
 Authorization: Bearer {{tmdb_token_env}}
+
+
+## IMAGES https://api.themoviedb.org/3/movie/{movie_id}/images 
