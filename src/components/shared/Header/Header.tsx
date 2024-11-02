@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaSignInAlt } from "react-icons/fa";
 
-export default function Header() {
+export const Header = () => {
 	return (
 		<>
 			{/* Navigation */}

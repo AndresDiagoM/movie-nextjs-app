@@ -1,6 +1,7 @@
+import { Footer } from "app/components/shared/Footer";
+import { Header } from "app/components/shared/Header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import ClientLayout from "app/components/layout/ClientLayout";
 import "./globals.css";
 
 // Fonts
@@ -34,7 +35,13 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<ClientLayout>{children}</ClientLayout>
+				<Header />
+
+				{/* Main content */}
+				<main>{children}</main>
+
+				{/* Footer */}
+				<Footer />
 			</body>
 		</html>
 	);

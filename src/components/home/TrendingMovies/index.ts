@@ -1,0 +1,1 @@
+export { TrendingMovies } from "./TrendingMovies";
