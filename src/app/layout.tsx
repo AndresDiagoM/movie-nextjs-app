@@ -33,12 +33,12 @@ export default function RootLayout({
 		<html lang="en">
 			<head>{/* head is for meta tags, title, styles, scripts, etc. */}</head>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
 			>
 				<Header />
 
 				{/* Main content */}
-				<main>{children}</main>
+				<main className="flex-grow">{children}</main>
 
 				{/* Footer */}
 				<Footer />

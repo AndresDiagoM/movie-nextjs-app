@@ -53,3 +53,15 @@ GET {{tmdb_host}}/3/movie/upcoming?language=en-US&page=1
 Authorization: Bearer {{tmdb_token_env}}
 
 # discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}
+
+### GET /trending
+GET {{tmdb_host}}/3/trending/movie/day?language=en-US&page=1
+Authorization: Bearer {{tmdb_token_env}}
+
+
+#--------------------------------------------------
+#------------------- Movie details ----------------
+
+### GET /{movie_id}
+GET {{tmdb_host}}/3/movie/912649
+Authorization: Bearer {{tmdb_token_env}}
