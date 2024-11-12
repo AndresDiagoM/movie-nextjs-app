@@ -1,11 +1,19 @@
 import type { NextConfig } from "next";
-import { env } from './src/env.mjs';
+import { env } from "./src/env.mjs";
 
 const nextConfig: NextConfig = {
-  images: {
-    domains: [env.NEXT_PUBLIC_TMDB_IMAGE_DOMAIN],
-  },
-  /* config options here */
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: env.NEXT_PUBLIC_TMDB_IMAGE_DOMAIN,
+			},
+		],
+	},
+	sassOptions: {
+		includePaths: ["src/sass"],
+		prependData: `@use "main.sass" as *`,
+	},
 };
 
 export default nextConfig;

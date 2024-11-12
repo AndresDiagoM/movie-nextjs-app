@@ -1,0 +1,44 @@
+@use '../../../sass/variables' as variables
+@use '../../../sass/mixins' as mixins
+
+.MovieHome
+    // background: url(../../assets/images/hero-bg.jpg) no-repeat center center
+    background-size: cover
+    height: 100vh
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    color: variables.$color-white
+    text-align: center
+    font-weight: 700
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+    padding: 0 20px
+    position: relative
+    z-index: 1
+    &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: rgba(0, 0, 0, 0.5)
+        z-index: -1
+
+.MovieHomeButtons
+    display: flex
+    gap: 20px
+    margin-top: 20px
+    .playButton
+        @include mixins.button-styles( variables.$color-white, variables.$color-black, variables.$hover-color)
+        .playIcon
+            font-size: variables.$font-size-large
+        &:hover
+            background-color: variables.$hover-color
+    .infoButton
+        @include mixins.button-styles( variables.$color-gray, variables.$color-white, variables.$hover-color)
+        .infoIcon
+            font-size: variables.$font-size-large
+        &:hover
+            background-color: variables.$hover-color

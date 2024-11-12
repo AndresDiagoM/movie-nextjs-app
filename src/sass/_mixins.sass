@@ -1,0 +1,16 @@
+@use 'variables' as variables
+
+@mixin button-styles($bg-color, $text-color, $hover-bg-color)
+    display: flex
+    align-items: center
+    gap: 5px
+    margin: 0
+    padding: 10px 20px
+    border: none
+    border-radius: 15px
+    cursor: pointer
+    background-color: $bg-color
+    color: $text-color
+    font-size: variables.$font-size-medium
+    &:hover
+        background-color: $hover-bg-color

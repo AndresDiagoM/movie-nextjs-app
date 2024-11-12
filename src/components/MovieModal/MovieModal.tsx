@@ -4,7 +4,7 @@ import { fetchMovieDetails } from "app/services/movieService";
 import { Movie } from "app/types/movies";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
-import styles from "./MovieModal.module.css";
+import styles from "./MovieModal.module.sass";
 
 export const MovieModal = ({
 	movie,
