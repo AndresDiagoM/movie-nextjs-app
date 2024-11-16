@@ -1,4 +1,5 @@
 // import Link from "next/link";
+import "app/sass/globals.sass";
 
 export default function Layout({
 	children,
