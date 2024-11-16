@@ -7,6 +7,35 @@
 # @tmdb_host = https://api.themoviedb.org/3/movie
 @tmdb_token_env = {{$dotenv NEXT_PUBLIC_TMDB_TOKEN}}
 
+
+#--------------------------------------------------
+#------------------- Movie details ----------------
+
+### GET /{movie_id}
+GET {{tmdb_host}}/3/movie/912649
+Authorization: Bearer {{tmdb_token_env}}
+
+
+## IMAGES https://api.themoviedb.org/3/movie/{movie_id}/images 
+
+
+#--------------------------------------------------
+#------------------- Movie genres -----------------
+
+### GET /genre/movies
+GET {{tmdb_host}}/3/genre/movie/list?language=en
+Authorization: Bearer {{tmdb_token_env}}
+
+
+#--------------------------------------------------
+#------------------- Search movies ----------------
+
+### GET /search
+GET {{tmdb_host}}/3/search/movie?include_adult=true&language=en-US&page=1&query=avengers
+Authorization: Bearer {{tmdb_token_env}}
+
+
+
 #--------------------------------------------------
 #------------------- Movies -----------------------
 
@@ -19,11 +48,6 @@ Authorization: Bearer {{tmdb_token_env}}
 
 ### GET /discover 
 GET {{tmdb_host}}/3/discover/movie?include_adult=true&include_video=true&language=en-US&page=1&sort_by=popularity.desc
-Authorization: Bearer {{tmdb_token_env}}
-
-
-### GET /genre/movies
-GET {{tmdb_host}}/3/genre/movie/list?language=en
 Authorization: Bearer {{tmdb_token_env}}
 
 
@@ -54,17 +78,12 @@ Authorization: Bearer {{tmdb_token_env}}
 
 # discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}
 
-### GET /trending
-GET {{tmdb_host}}/3/trending/movie/day?language=en-US&page=1
+### GET /trending query -> movie/{time_window} = week or day
+GET {{tmdb_host}}/3/trending/movie/week?language=en-US&page=1&limit=1
+Authorization: Bearer {{tmdb_token_env}}
+
+### GET trending all -- query -> movie/{time_window} = week or day
+GET {{tmdb_host}}/3/trending/all/week?language=en-US&page=1
 Authorization: Bearer {{tmdb_token_env}}
 
 
-#--------------------------------------------------
-#------------------- Movie details ----------------
-
-### GET /{movie_id}
-GET {{tmdb_host}}/3/movie/912649
-Authorization: Bearer {{tmdb_token_env}}
-
-
-## IMAGES https://api.themoviedb.org/3/movie/{movie_id}/images 

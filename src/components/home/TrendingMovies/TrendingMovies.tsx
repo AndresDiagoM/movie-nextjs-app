@@ -1,8 +1,8 @@
 "use client";
 
 import { MovieModal } from "app/components/MovieModal";
-import { fetchTrendingMovies } from "app/services/movieService";
-import { Movie } from "app/types/movies";
+import MovieService from "app/services/movieService";
+import { Movie } from "app/types";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./TrendingMovies.module.css";
@@ -15,7 +15,7 @@ export const TrendingMovies = () => {
 
 	useEffect(() => {
 		const fetchMovies = async () => {
-			const data = await fetchTrendingMovies();
+			const data = await MovieService.fetchTrendingMovies();
 			setMovies(data.results);
 			console.log("[TendingMovies] Movies length: ", data.results.length);
 		};
@@ -30,7 +30,7 @@ export const TrendingMovies = () => {
 					<div key={movie?.id} className={styles.MovieContainer}>
 						<Image
 							src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
-							alt={movie?.title}
+							alt={movie?.title || ""}
 							className="rounded-lg"
 							width={500}
 							height={750}

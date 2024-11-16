@@ -5,7 +5,7 @@ export default function Layout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<main className="pt-20">
+		<main className="pt-0">
 			{/* <nav>
 				<ul>
 					<li>

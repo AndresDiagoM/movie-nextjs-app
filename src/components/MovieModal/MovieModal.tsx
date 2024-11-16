@@ -1,7 +1,7 @@
 "use client";
 
-import { fetchMovieDetails } from "app/services/movieService";
-import { Movie } from "app/types/movies";
+import MovieService from "app/services/movieService";
+import { Movie, Show } from "app/types";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import styles from "./MovieModal.module.sass";
@@ -10,7 +10,7 @@ export const MovieModal = ({
 	movie,
 	onClose,
 }: {
-	movie: Movie;
+	movie: Movie | Show;
 	onClose: () => void;
 }) => {
 	const [isVisible, setIsVisible] = useState(true);
@@ -23,7 +23,7 @@ export const MovieModal = ({
 
 	useEffect(() => {
 		const details = async () => {
-			const data = await fetchMovieDetails(movie.id);
+			const data = await MovieService.fetchMovieDetails(movie.id);
 			console.log("[MovieModal] Movie details: ", data);
 			setMovieDetails(data);
 		};

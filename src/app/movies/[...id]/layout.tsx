@@ -8,7 +8,7 @@ export default function Layout({
 			<nav>
 				<ul>
 					<li>
-						<Link href="/">Navegacion de movies ID</Link>
+						<Link href="/">Navegación de movies ID</Link>
 					</li>
 				</ul>
 			</nav>
