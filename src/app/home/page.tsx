@@ -1,5 +1,5 @@
 // import { TrendingMovies } from "app/components/home/TrendingMovies";
-import { ShowsContainer } from "app/components/home/ShowsContainer";
+import { ShowsContainer } from "app/components/ShowsContainer";
 import { MovieHero } from "app/components/shared/ShowHero";
 import MovieService from "app/services/movieService";
 import type { Metadata } from "next";
