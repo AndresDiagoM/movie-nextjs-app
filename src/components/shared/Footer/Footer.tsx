@@ -4,7 +4,7 @@ export const Footer = () => {
 	return (
 		<>
 			{/* Footer */}
-			<footer className="relative bottom-0 w-full flex flex-row space-x-4 justify-center">
+			<footer className="relative bottom-0 pt-5 p-2 w-full flex flex-row space-x-4 justify-center">
 				<a
 					href="https://www.linkedin.com/in/andres-felipe-diago-matta/"
 					target="_blank"
