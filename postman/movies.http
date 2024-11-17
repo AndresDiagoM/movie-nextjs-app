@@ -87,3 +87,12 @@ GET {{tmdb_host}}/3/trending/all/week?language=en-US&page=1
 Authorization: Bearer {{tmdb_token_env}}
 
 
+#--------------------------------------------------
+#------------------- Movie trailers ----------------
+
+### GET /{movie_id}/videos
+GET {{tmdb_host}}/3/movie/558449/videos
+Authorization: Bearer {{tmdb_token_env}}
+
+# then use the youtube key to get the video https://www.youtube.com/watch?v=
+

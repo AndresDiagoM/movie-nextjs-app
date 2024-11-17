@@ -14,3 +14,18 @@
     font-size: variables.$font-size-medium
     &:hover
         background-color: $hover-bg-color
+
+@mixin play-button-styles
+    display: flex
+    align-items: center
+    gap: 5px
+    margin: 0
+    padding: 10px 20px
+    border: none
+    border-radius: 5px
+    cursor: pointer
+    background-color: variables.$color-white
+    color: variables.$color-black
+    animation: variables.$play-button-animation
+    &:hover
+        transform: scale(1.1)
