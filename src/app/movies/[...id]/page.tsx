@@ -22,9 +22,18 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 	const { id } = React.use(params);
 	const { mediaType } = React.use(searchParams);
 	const [show, setShow] = React.useState<Show | null>(null);
+	const [isTvShow, setIsTvShow] = React.useState<boolean>(false);
 	const [currentService, setCurrentService] =
 		React.useState<string>(StreamingService);
-	const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
+
+	// handle video url
+	const [videoUrl, setVideoUrl] = React.useState<string>("");
+	const [selectedSeason, setSelectedSeason] = React.useState<number | null>(
+		null
+	);
+	const [selectedEpisode, setSelectedEpisode] = React.useState<number | null>(
+		null
+	);
 
 	React.useEffect(() => {
 		const showId = Number(id);
@@ -34,22 +43,44 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 				mediaType as MediaType
 			);
 			setShow(showDetails);
+			setVideoUrl(`${currentService}${mediaType}/${showDetails?.id}`);
 		};
 		getShowDetails();
-	}, [id, mediaType]);
+
+		if (mediaType === "tv") {
+			setIsTvShow(true);
+		}
+	}, [id, mediaType, currentService]);
 
 	if (!show) {
 		return <div>Loading...</div>;
 	}
 
-	const videoUrl = `${currentService}${mediaType}/${show.id}`;
 	console.log("Params: ", id, " Media Type: ", mediaType);
 	console.log("Show: ", show);
 	console.log("Video URL: ", videoUrl);
 
 	const handleServiceChange = (service: string) => {
 		setCurrentService(service);
-		setIsPlaying(true);
+	};
+
+	const handleSeasonSelect = (seasonNumber: number) => {
+		setSelectedSeason(seasonNumber === selectedSeason ? null : seasonNumber);
+		setSelectedEpisode(null);
+	};
+
+	const handleEpisodeSelect = (episodeNumber: number) => {
+		setSelectedEpisode(episodeNumber);
+		if (currentService.includes("vidsrc.cc")) {
+			setVideoUrl(
+				`${currentService}${mediaType}/${show?.id}/${selectedSeason}/${selectedEpisode}`
+			);
+		} else if (currentService.includes("vidsrc.xyz")) {
+			setVideoUrl(
+				`${currentService}${mediaType}/${show?.id}/${selectedSeason}-${selectedEpisode}`
+			);
+		}
+		console.log("Video URL: ", videoUrl);
 	};
 
 	return (
@@ -67,6 +98,42 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 				<div className="flex justify-center mt-4">
 					<VideoPlayer url={videoUrl} height="600px" width="80%" />
 				</div>
+
+				{/* If is tv show, show number of seasons, and episodes */}
+				{isTvShow && (
+					<div className="pt-4 mt-4">
+						<p className="text-lg">
+							Number of Seasons: {show.number_of_seasons} | Number of Episodes:{" "}
+							{show.number_of_episodes}
+						</p>
+						<div className="mt-4">
+							{show.seasons?.map((season) => (
+								<div key={season.id} className="mb-4">
+									<button
+										onClick={() => handleSeasonSelect(season.season_number!)}
+										className="px-4 py-2 bg-gray-700 text-white rounded"
+									>
+										{season.name}
+									</button>
+									{selectedSeason === season.season_number && (
+										<div className="mt-2">
+											{season.episode_count !== null &&
+												Array.from({ length: season.episode_count }, (_, i) => (
+													<button
+														key={i}
+														onClick={() => handleEpisodeSelect(i + 1)}
+														className="mr-2 px-2 py-1 bg-gray-500 text-white rounded"
+													>
+														Episode {i + 1}
+													</button>
+												))}
+										</div>
+									)}
+								</div>
+							))}
+						</div>
+					</div>
+				)}
 
 				{/* Buttons to switch streaming services */}
 				<div className="pt-4 mt-4">

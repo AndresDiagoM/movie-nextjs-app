@@ -34,6 +34,18 @@ export type Show = {
 	vote_average: number;
 	vote_count: number;
 	original_name?: string;
+	seasons?: Season[];
+};
+
+export type Season = {
+	air_date: string | null;
+	episode_count: number | null;
+	id: number | null;
+	name: string | null;
+	overview: string | null;
+	poster_path: string | null;
+	season_number: number | null;
+	vote_average: number | null;
 };
 
 export interface Movie {

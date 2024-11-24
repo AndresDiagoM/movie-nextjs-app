@@ -1,0 +1,16 @@
+## MORE INFO OF TMDB: https://developer.themoviedb.org/reference
+## https://github.com/Huachao/vscode-restclient
+
+# @contentType = application/json
+# @createdAt = {{$datetime iso8601}}
+
+# @tmdb_host = https://api.themoviedb.org/3/movie
+@tmdb_token_env = {{$dotenv NEXT_PUBLIC_TMDB_TOKEN}}
+
+
+#----------------------------------------------------
+#------------------- TV SHOW details ----------------
+
+### GET /{show_id}   ejemplo: 94605 - arcane 
+GET {{tmdb_host}}/3/tv/94605
+Authorization: Bearer {{tmdb_token_env}}

@@ -31,16 +31,28 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 			</p>
 
 			<div className={styles.MovieHomeButtons}>
-				<Link href={`/movies/${randomShow.id}?mediaType=${randomShow.media_type ?? ''}`} passHref>
+				<Link
+					href={`/movies/${randomShow.id}?mediaType=${
+						randomShow.media_type ?? ""
+					}`}
+					passHref
+				>
 					<button className={styles.playButton}>
 						<FaPlay className={styles.playIcon} /> Play
 					</button>
 				</Link>
 
-				<button className={styles.infoButton}>
-					<FaCircleInfo className={styles.infoIcon} />
-					More Info
-				</button>
+				<Link
+					href={`/movies/${randomShow.id}?mediaType=${
+						randomShow.media_type ?? ""
+					}`}
+					passHref
+				>
+					<button className={styles.infoButton}>
+						<FaCircleInfo className={styles.infoIcon} />
+						More Info
+					</button>
+				</Link>
 			</div>
 		</div>
 	);
