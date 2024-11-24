@@ -2,6 +2,7 @@
 
 import ShowsService from "app/services/showService";
 import { Movie, Show } from "app/types";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
@@ -37,6 +38,7 @@ export const ShowModal = ({
 		const details = async () => {
 			const data = await ShowsService.fetchMovieDetails(movie.id);
 			console.log("[MovieModal] Movie details: ", data);
+			console.log("[MovieModal] Movie link: ", `/movies/${movie.id}?mediaType=${movie.media_type ?? ""}`);
 			setMovieDetails(data);
 		};
 		details();
@@ -98,11 +100,11 @@ export const ShowModal = ({
 								onPause={() => handlePlay}
 								config={{
 									youtube: {
-										playerVars: { 
-											modestbranding: 1, 
-											rel: 0 
-										}
-									}
+										playerVars: {
+											modestbranding: 1,
+											rel: 0,
+										},
+									},
 								}}
 							/>
 						) : (
@@ -129,7 +131,14 @@ export const ShowModal = ({
 						<p>{movieDetails?.runtime} minutes |</p>
 						<p>{movie?.release_date || movie?.first_air_date}</p>
 					</div>
-					<button className={styles.infoButton}>More Info</button>
+
+					{/* Buttons */}
+					<Link
+						href={`/movies/${movie.id}?mediaType=${movie.media_type ?? ""}`}
+						passHref
+					>
+						<button className={styles.infoButton}>More Info</button>
+					</Link>
 				</div>
 			</div>
 		</>

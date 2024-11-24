@@ -83,6 +83,18 @@ class ShowsService extends BaseService {
 		return response.data;
 	});
 
+	static fetchShowDetails = cache(async (id: number, mediaType: MediaType) => {
+		const response = await this.getInstance().axiosInstance.get(
+			`/${mediaType}/${id}`,
+			{
+				params: {
+					language: "en-US",
+				},
+			}
+		);
+		return response.data;
+	});
+
 	static fetchTrendingMovies = cache(async () => {
 		const response = await this.getInstance().axiosInstance.get(
 			"/trending/movie/day",

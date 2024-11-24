@@ -33,7 +33,7 @@ export const ShowsContainer = ({ shows }: { shows: Show[] }) => {
 				breakpoint: 1024,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 1,
+					slidesToScroll: 3,
 					infinite: true,
 					dots: true,
 				},
@@ -42,7 +42,7 @@ export const ShowsContainer = ({ shows }: { shows: Show[] }) => {
 				breakpoint: 600,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 1,
+					slidesToScroll: 2,
 				},
 			},
 			{

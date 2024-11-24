@@ -1,4 +1,5 @@
 import { Show } from "app/types";
+import Link from "next/link";
 import { FaPlay } from "react-icons/fa";
 import { FaCircleInfo } from "react-icons/fa6";
 import styles from "./MovieHero.module.sass";
@@ -14,10 +15,12 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 			}}
 		>
 			<div className={styles.overlay}></div>
-			<h1 className={styles.MovieHomeTitle}>{randomShow.title || randomShow.name}</h1>
+			<h1 className={styles.MovieHomeTitle}>
+				{randomShow.title || randomShow.name}
+			</h1>
 			<div className={styles.MovieHomeStatsContainer}>
 				<p className={styles.MovieHomeStats}>
-					 {((randomShow.vote_average ?? 0) * 10).toFixed(1)}% Match
+					{((randomShow.vote_average ?? 0) * 10).toFixed(1)}% Match
 				</p>
 				<p className={styles.MovieHomeDate}>
 					| {randomShow.release_date || randomShow.first_air_date}
@@ -28,9 +31,11 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 			</p>
 
 			<div className={styles.MovieHomeButtons}>
-				<button className={styles.playButton}>
-					<FaPlay className={styles.playIcon} /> Play
-				</button>
+				<Link href={`/movies/${randomShow.id}?mediaType=${randomShow.media_type ?? ''}`} passHref>
+					<button className={styles.playButton}>
+						<FaPlay className={styles.playIcon} /> Play
+					</button>
+				</Link>
 
 				<button className={styles.infoButton}>
 					<FaCircleInfo className={styles.infoIcon} />

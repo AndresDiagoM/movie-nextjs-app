@@ -5,7 +5,7 @@ export const Header = () => {
 	return (
 		<>
 			{/* Navigation */}
-			<header className="absolute top-0 left-0 w-full z-10 text-center text-white bg-transparent">
+			<header className="absolute top-0 left-0 w-full z-30 text-center text-white bg-transparent"> {/* Updated z-index */}
 				<nav
 					className={`flex justify-between items-center p-6 w-full max-w-6xl mx-auto`}
 				>
