@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { CustomNextArrow, CustomPrevArrow } from "./CustomArrows";
 
-export const ShowsContainer = ({ shows }: { shows: Show[] }) => {
+export const ShowsContainer = ({ shows, title }: { shows: Show[], title: string }) => {
 	const [selectedMovie, setSelectedMovie] = useState<Show | null>(null);
 
 	useEffect(() => {
@@ -59,26 +59,28 @@ export const ShowsContainer = ({ shows }: { shows: Show[] }) => {
 		<div className="pt-0 background-transparent -mt-20 z-20 relative">
 			<div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-black z-0" />
 			<h1 className="pl-8 text-2xl font-bold mb-4 relative z-10">
-				Trending Now
+				{title}
 			</h1>
 			<div className="relative z-10 mx-auto" style={{ maxWidth: "95vw" }}>
 				<Slider {...settings}>
 					{Array.isArray(shows) &&
 						shows.map((movie) => (
-							<div key={movie?.id} className="relative group px-2">
-								<Image
-									src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
-									alt={movie?.title || ""}
-									className="rounded-lg cursor-pointer transform transition-transform duration-300 group-hover:scale-105"
-									width={500}
-									height={750}
-									priority
-									onClick={() => setSelectedMovie(movie)}
-								/>
-								<div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white text-sm p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-lg max-h-[70%] overflow-hidden">
-									{movie?.overview}
+							movie?.poster_path && (
+								<div key={movie?.id} className="relative group px-2">
+									<Image
+										src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+										alt={movie?.title || ""}
+										className="rounded-lg cursor-pointer transform transition-transform duration-300 group-hover:scale-105"
+										width={500}
+										height={750}
+										priority
+										onClick={() => setSelectedMovie(movie)}
+									/>
+									<div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white text-sm p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-lg max-h-[70%] overflow-hidden">
+										{movie?.overview}
+									</div>
 								</div>
-							</div>
+							)
 						))}
 				</Slider>
 			</div>

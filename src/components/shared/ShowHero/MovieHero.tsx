@@ -33,7 +33,7 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 			<div className={styles.MovieHomeButtons}>
 				<Link
 					href={`/movies/${randomShow.id}?mediaType=${
-						randomShow.media_type ?? ""
+						randomShow.media_type ?? "movie"
 					}`}
 					passHref
 				>

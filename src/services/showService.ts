@@ -29,35 +29,16 @@ class ShowsService extends BaseService {
 		return ShowsService.instance;
 	}
 
-	static fetchShows = cache(async () => {
+	/**
+	 * Fetches the discover series or movies, also by genre
+	 * @method fetchDiscoverShows
+	 * @param {MediaType} mediaType - The type of media (movie or tv)
+	 * @param {number} genreId - The ID of the genre
+	 * @returns {Promise<any>} - The response from the API
+	 */
+	static fetchDiscoverShows = cache(async (mediaType: MediaType, genreId: number) => {
 		const response = await this.getInstance().axiosInstance.get(
-			"/trending/all/day",
-			{
-				params: {
-					language: "en-US",
-					page: 1,
-				},
-			}
-		);
-		return response.data;
-	});
-
-	static fetchPopularMovies = cache(async () => {
-		const response = await this.getInstance().axiosInstance.get(
-			"/movie/popular",
-			{
-				params: {
-					language: "en-US",
-					page: 1,
-				},
-			}
-		);
-		return response.data;
-	});
-
-	static fetchDiscoverMovies = cache(async () => {
-		const response = await this.getInstance().axiosInstance.get(
-			"/discover/movie",
+			`/discover/${mediaType}`,
 			{
 				params: {
 					language: "en-US",
@@ -65,24 +46,20 @@ class ShowsService extends BaseService {
 					sort_by: "popularity.desc",
 					page: 1,
 					limit: 1,
+					with_genres: genreId,
 				},
 			}
 		);
 		return response.data;
 	});
 
-	static fetchMovieDetails = cache(async (id: number) => {
-		const response = await this.getInstance().axiosInstance.get(
-			`/movie/${id}`,
-			{
-				params: {
-					language: "en-US",
-				},
-			}
-		);
-		return response.data;
-	});
-
+	/**
+	 * Fetches the details of a show
+	 * @method fetchShowDetails
+	 * @param {number} id - The ID of the show
+	 * @param {MediaType} mediaType - The type of media (movie or tv)
+	 * @returns {Promise<any>} - The response from the API
+	 */
 	static fetchShowDetails = cache(async (id: number, mediaType: MediaType) => {
 		const response = await this.getInstance().axiosInstance.get(
 			`/${mediaType}/${id}`,
@@ -95,9 +72,42 @@ class ShowsService extends BaseService {
 		return response.data;
 	});
 
-	static fetchTrendingMovies = cache(async () => {
+	/**
+	 * Fetches the trending tv shows or movies, by the week or day
+	 * @method fetchTrending
+	 * @param {string} timeWindow - The time window for the trending data (day or week)
+	 * @param {string} mediaType - The type of media (movie, tv or all)
+	 * @returns {Promise<any>} - The response from the API
+	 */
+	static fetchTrending = cache(
+		async (timeWindow: string, mediaType: MediaType) => {
+			const response = await this.getInstance().axiosInstance.get(
+				`/trending/${mediaType}/${timeWindow}`
+			);
+			return response.data;
+		}
+	);
+
+	/**
+	 * Fetches the trailer for a show
+	 * @method fetchShowTrailer
+	 * @param {MediaType} mediaType - The type of media (movie or tv)
+	 */
+	static fetchShowTrailer = cache(async (mediaType: MediaType, id: number) => {
 		const response = await this.getInstance().axiosInstance.get(
-			"/trending/movie/day",
+			`/${mediaType}/${id}/videos`
+		);
+		return response.data;
+	});
+
+	/**
+	 * Fetches the latest movie, just 1 movie
+	 * @method fetchLatestMovies
+	 * @returns {Promise<any>} - The response from the API
+	 */
+	static fetchLatestMovie = cache(async () => {
+		const response = await this.getInstance().axiosInstance.get(
+			"/movie/latest",
 			{
 				params: {
 					language: "en-US",
@@ -108,16 +118,63 @@ class ShowsService extends BaseService {
 		return response.data;
 	});
 
-	static fetchTrendingAll = cache(async () => {
+	/**
+	 * Fetches movies lists
+	 * @method fetchMovies
+	 * @param {string} listType - The type of list to fetch (popular, top_rated, upcoming, now_playing)
+	 * now_playing: Get a list of movies that are currently in theatres.
+	 * popular: Get a list of the current popular movies on TMDb. This list updates daily.
+	 * top_rated: Get the top rated movies on TMDb.
+	 * upcoming: Get a list of upcoming movies in theatres.
+	 * @returns {Promise<any>} - The response from the API
+	 */
+	static fetchMoviesList = cache(async (listType: string) => {
 		const response = await this.getInstance().axiosInstance.get(
-			"/trending/all/day"
+			`/movie/${listType}`,
+			{
+				params: {
+					language: "en-US",
+					page: 1,
+				},
+			}
 		);
 		return response.data;
 	});
 
-	static fetchShowTrailer = cache(async (mediaType: MediaType, id: number) => {
+	/**
+	 * Fetches tv shows lists
+	 * @method fetchTvShowsList
+	 * @param {string} listType - The type of list to fetch (popular, top_rated, on_the_air, airing_today)
+	 * on_the_air: Get a list of shows that are currently on the air.
+	 * airing_today: Get a list of shows that are airing today.
+	 * popular: Get a list of the current popular TV shows on TMDb. This list updates daily.
+	 * top_rated: Get the top rated TV shows on TMDb.
+	 * @returns {Promise<any>} - The response from the API
+	 * @example
+	 * ShowsService.fetchTvShowsList("popular");
+	 */
+	static fetchTvShowsList = cache(async (listType: string) => {
 		const response = await this.getInstance().axiosInstance.get(
-			`/${mediaType}/${id}/videos`
+			`/tv/${listType}`,
+			{
+				params: {
+					language: "en-US",
+					page: 1,
+				},
+			}
+		);
+		return response.data;
+	});
+
+	/**
+	 * Fetches the genres of tv series or movies
+	 * @method fetchGenres
+	 * @param {MediaType} mediaType - The type of media (movie or tv)
+	 * @returns {Promise<any>} - The response from the API
+	 */
+	static fetchGenres = cache(async (mediaType: MediaType) => {
+		const response = await this.getInstance().axiosInstance.get(
+			`/genre/${mediaType}/list`
 		);
 		return response.data;
 	});

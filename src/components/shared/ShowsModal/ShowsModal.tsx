@@ -36,7 +36,7 @@ export const ShowModal = ({
 
 	useEffect(() => {
 		const details = async () => {
-			const data = await ShowsService.fetchMovieDetails(movie.id);
+			const data = await ShowsService.fetchShowDetails(movie.id, movie.media_type);
 			console.log("[MovieModal] Movie details: ", data);
 			console.log("[MovieModal] Movie link: ", `/movies/${movie.id}?mediaType=${movie.media_type ?? ""}`);
 			setMovieDetails(data);

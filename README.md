@@ -79,3 +79,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## Streaming services used in this project
+
+- Vidsrc (https://vidsrc.cc/)
+- Vidsrc (https://vidsrc.xyz/)
+
+The way to send the season and episode number to the video player is to use the following format:
+
+```bash
+https://vidsrc.cc/v2/embed/type/season/episode
+
+https://vidsrc.cc/v2/embed/tv/tt0944947/1/5
+```

@@ -14,3 +14,13 @@
 ### GET /{show_id}   ejemplo: 94605 - arcane 
 GET {{tmdb_host}}/3/tv/94605
 Authorization: Bearer {{tmdb_token_env}}
+
+
+## IMAGES https://api.themoviedb.org/3/tv/{show_id}/images
+
+#----------------------------------------------------
+#------------------- TV SHOW lists ------------------
+
+### GET /popular  ?api_key={{tmdb_token}}
+GET {{tmdb_host}}/3/tv/popular
+Authorization: Bearer {{tmdb_token_env}}

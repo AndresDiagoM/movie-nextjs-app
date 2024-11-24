@@ -86,6 +86,10 @@ Authorization: Bearer {{tmdb_token_env}}
 GET {{tmdb_host}}/3/trending/all/day?language=en-US&page=1
 Authorization: Bearer {{tmdb_token_env}}
 
+### GET /movie/latest -> return just 1 movie
+GET {{tmdb_host}}/3/movie/latest?language=en-US
+Authorization: Bearer {{tmdb_token_env}}
+
 
 #--------------------------------------------------
 #------------------- Movie trailers ----------------
