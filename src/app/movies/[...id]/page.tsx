@@ -11,7 +11,7 @@ const StreamingService2 = env.NEXT_PUBLIC_VIDSRC2_API_URL;
 
 interface MoviesProps {
 	params: Promise<{ id: string }>;
-	searchParams: { [key: string]: string };
+	searchParams: Promise<{ mediaType: string }>;
 }
 
 const fetchShowDetails = async (id: number, mediaType: MediaType) => {
@@ -80,7 +80,7 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 				`${currentService}${mediaType}/${show?.id}/${selectedSeason}-${selectedEpisode}`
 			);
 		}
-		console.log("Video URL: ", videoUrl);
+		console.log("[MOVIES] Video URL: ", videoUrl);
 	};
 
 	return (

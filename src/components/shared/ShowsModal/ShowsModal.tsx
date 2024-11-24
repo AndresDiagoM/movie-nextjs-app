@@ -1,7 +1,7 @@
 "use client";
 
 import ShowsService from "app/services/showService";
-import { Movie, Show } from "app/types";
+import { MediaType, Movie, Show } from "app/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
@@ -11,9 +11,11 @@ import styles from "./ShowsModal.module.sass";
 export const ShowModal = ({
 	movie,
 	onClose,
+	mediaType, // Add mediaType prop
 }: {
 	movie: Show;
 	onClose: () => void;
+	mediaType?: MediaType;
 }) => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
@@ -34,11 +36,13 @@ export const ShowModal = ({
 		}
 	};
 
+	// console.log("[MovieModal] Movie: ", movie, movie.media_type);
+
 	useEffect(() => {
 		const details = async () => {
-			const data = await ShowsService.fetchShowDetails(movie.id, movie.media_type);
-			console.log("[MovieModal] Movie details: ", data);
-			console.log("[MovieModal] Movie link: ", `/movies/${movie.id}?mediaType=${movie.media_type ?? ""}`);
+			const data = await ShowsService.fetchShowDetails(movie.id, mediaType || movie.media_type);
+			// console.log("[MovieModal] Movie details: ", data);
+			// console.log("[MovieModal] Movie link: ", `/movies/${movie.id}?mediaType=${movie.media_type ?? ""}`);
 			setMovieDetails(data);
 		};
 		details();
@@ -46,7 +50,7 @@ export const ShowModal = ({
 		// get the trailer
 		const trailer = async () => {
 			const data = await ShowsService.fetchShowTrailer(
-				movie.media_type,
+				mediaType || movie.media_type,
 				movie.id
 			);
 			console.log("[MovieModal] Movie trailer: ", data);
@@ -56,7 +60,7 @@ export const ShowModal = ({
 			}
 		};
 		trailer();
-	}, [movie]);
+	}, [movie, mediaType]);
 
 	useEffect(() => {
 		if (showTrailer) {
@@ -134,7 +138,7 @@ export const ShowModal = ({
 
 					{/* Buttons */}
 					<Link
-						href={`/movies/${movie.id}?mediaType=${movie.media_type ?? ""}`}
+						href={`/movies/${movie.id}?mediaType=${movie.media_type ?? "movie"}`}
 						passHref
 					>
 						<button className={styles.infoButton}>More Info</button>

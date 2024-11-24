@@ -37,13 +37,13 @@ const Movies: React.FC = async () => {
 
 			<div className="relative pt-0 z-20 p-8 text-white text-center flex-1 space-y-8">
 				{/* Latest Movies */}
-				<ShowsContainer shows={latestMovies.results} title="Latest Movies" />
+				<ShowsContainer shows={latestMovies.results} title="Latest Movies" mediaType={MediaType.MOVIE} />
 
 				{/* Action Movies */}
-				<ShowsContainer shows={actionMovies.results} title="Action Movies" />
+				<ShowsContainer shows={actionMovies.results} title="Action Movies" mediaType={MediaType.MOVIE} />
 
 				{/* Comedy Movies */}
-				<ShowsContainer shows={comedyMovies.results} title="Comedy Movies" />
+				<ShowsContainer shows={comedyMovies.results} title="Comedy Movies" mediaType={MediaType.MOVIE} />
 			</div>
 		</div>
 	);

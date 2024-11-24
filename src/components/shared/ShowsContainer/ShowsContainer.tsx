@@ -1,7 +1,7 @@
 "use client";
 
 import { ShowModal } from "app/components/shared/ShowsModal";
-import { Show } from "app/types";
+import { MediaType, Show } from "app/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { CustomNextArrow, CustomPrevArrow } from "./CustomArrows";
 
-export const ShowsContainer = ({ shows, title }: { shows: Show[], title: string }) => {
+export const ShowsContainer = ({ shows, title, mediaType }: { shows: Show[], title: string, mediaType?: MediaType }) => {
 	const [selectedMovie, setSelectedMovie] = useState<Show | null>(null);
 
 	useEffect(() => {
@@ -87,6 +87,7 @@ export const ShowsContainer = ({ shows, title }: { shows: Show[], title: string 
 			{selectedMovie && (
 				<ShowModal
 					movie={selectedMovie}
+					mediaType={mediaType}
 					onClose={() => setSelectedMovie(null)}
 				/>
 			)}

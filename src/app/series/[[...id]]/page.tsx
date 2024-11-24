@@ -6,8 +6,8 @@ export const metadata: Metadata = {
 };
 
 interface SeriesProps {
-	params: { [key: string]: string };
-	searchParams: { [key: string]: string };
+	params: Promise<{ id: string }>;
+	searchParams: Promise<{ mediaType: string }>;
 }
 
 const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {

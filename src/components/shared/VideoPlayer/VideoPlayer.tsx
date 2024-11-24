@@ -16,6 +16,7 @@ interface VideoPlayerProps {
  * @returns {JSX.Element} The rendered VideoPlayer component.
  */
 export const VideoPlayer = ({ url, height, width }: VideoPlayerProps): JSX.Element => {
+	console.log("[VideoPlayer] URL: ", url);
 	return (
 		<div style={{ height, width, margin: "0 auto" }}>
 			<iframe
