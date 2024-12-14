@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FaSignInAlt } from "react-icons/fa";
+import SearchBar from "./SearchBar";
 
 export const Header = () => {
 	return (
@@ -34,13 +35,18 @@ export const Header = () => {
 							</Link>
 						</li>
 					</ul>
+
+					{/* SEARCH BUTTON */}
+					<SearchBar />
+
+					{/* LOGIN BUTTON */}
 					<div className="flex space-x-4 items-center">
 						<a
 							href="#blocks"
 							className="flex ml-4 bg-white text-black py-2 px-4 rounded-full hover:bg-gray-200"
 						>
 							Login
-							<FaSignInAlt className="ml-2 w-full py-1" size="24px" />
+							<FaSignInAlt className="ml-2 w-full py-1 text-black" size="24px" />
 						</a>
 					</div>
 				</nav>
