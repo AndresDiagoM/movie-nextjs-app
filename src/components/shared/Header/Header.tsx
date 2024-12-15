@@ -6,14 +6,14 @@ export const Header = () => {
 	return (
 		<>
 			{/* Navigation */}
-			<header className="absolute top-0 left-0 w-full z-30 text-center text-white bg-transparent"> {/* Updated z-index */}
+			<header className="fixed top-0 left-0 w-full z-20 text-center text-white bg-gradient-to-b from-black/80 to-transparent">
 				<nav
 					className={`flex justify-between items-center p-6 w-full max-w-6xl mx-auto`}
 				>
 					<Link href="/">
 						<h1 className="text-xl font-bold cursor-pointer">Sudo-Flix</h1>
 					</Link>
-					<ul className="flex space-x-6">
+					<ul className="flex space-x-6 items-center">
 						<li>
 							<Link href="/home" className="hover:underline">
 								Home
@@ -34,10 +34,10 @@ export const Header = () => {
 								Trending
 							</Link>
 						</li>
+						<li>
+							<SearchBar />
+						</li>
 					</ul>
-
-					{/* SEARCH BUTTON */}
-					<SearchBar />
 
 					{/* LOGIN BUTTON */}
 					<div className="flex space-x-4 items-center">

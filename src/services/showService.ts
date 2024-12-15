@@ -1,6 +1,5 @@
 import { env } from "app/env.mjs";
 import { MediaType } from "app/types";
-import { cache } from "react";
 import BaseService from "./baseService";
 
 const API_BASE_URL = env.NEXT_PUBLIC_TMDB_API_URL;
@@ -30,13 +29,35 @@ class ShowsService extends BaseService {
 	}
 
 	/**
+	 * Fetches the search results based on the provided query.
+	 * It can search across multiple types (movies, TV shows, etc.) or keywords.
+	 * @method searchShows
+	 * @param {string} query - The search query.
+	 * @param {boolean} [multi=true] - Whether to search across multiple types (default is true).
+	 *                                 If false, it searches for keywords.
+	 * @returns {Promise<any>} - The response from the API containing the search results.
+	 */
+	static searchShows = this.safeApiCall(async (query: string, multi = true) => {
+		const param = multi ? "multi" : "keyword";
+		const response = await this.getInstance().axiosInstance.get(
+			`/search/${param}`,
+			{
+				params: {
+					query,
+				},
+			}
+		);
+		return response.data;
+	});
+
+	/**
 	 * Fetches the discover series or movies, also by genre
 	 * @method fetchDiscoverShows
 	 * @param {MediaType} mediaType - The type of media (movie or tv)
 	 * @param {number} genreId - The ID of the genre
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchDiscoverShows = cache(async (mediaType: MediaType, genreId: number) => {
+	static fetchDiscoverShows = this.safeApiCall(async (mediaType: MediaType, genreId: number) => {
 		const response = await this.getInstance().axiosInstance.get(
 			`/discover/${mediaType}`,
 			{
@@ -60,7 +81,7 @@ class ShowsService extends BaseService {
 	 * @param {MediaType} mediaType - The type of media (movie or tv)
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchShowDetails = cache(async (id: number, mediaType: MediaType) => {
+	static fetchShowDetails = this.safeApiCall(async (id: number, mediaType: MediaType) => {
 		const response = await this.getInstance().axiosInstance.get(
 			`/${mediaType}/${id}`,
 			{
@@ -79,7 +100,7 @@ class ShowsService extends BaseService {
 	 * @param {string} mediaType - The type of media (movie, tv or all)
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchTrending = cache(
+	static fetchTrending = this.safeApiCall(
 		async (timeWindow: string, mediaType: MediaType) => {
 			const response = await this.getInstance().axiosInstance.get(
 				`/trending/${mediaType}/${timeWindow}`
@@ -93,7 +114,7 @@ class ShowsService extends BaseService {
 	 * @method fetchShowTrailer
 	 * @param {MediaType} mediaType - The type of media (movie or tv)
 	 */
-	static fetchShowTrailer = cache(async (mediaType: MediaType, id: number) => {
+	static fetchShowTrailer = this.safeApiCall(async (mediaType: MediaType, id: number) => {
 		const response = await this.getInstance().axiosInstance.get(
 			`/${mediaType}/${id}/videos`
 		);
@@ -105,7 +126,7 @@ class ShowsService extends BaseService {
 	 * @method fetchLatestMovies
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchLatestMovie = cache(async () => {
+	static fetchLatestMovie = this.safeApiCall(async () => {
 		const response = await this.getInstance().axiosInstance.get(
 			"/movie/latest",
 			{
@@ -128,14 +149,14 @@ class ShowsService extends BaseService {
 	 * upcoming: Get a list of upcoming movies in theatres.
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchMoviesList = cache(async (listType: string) => {
+	static fetchMoviesList = this.safeApiCall(async (listType: string) => {
 		const response = await this.getInstance().axiosInstance.get(
 			`/movie/${listType}`,
 			{
 				params: {
 					language: "en-US",
 					page: 1,
-				},
+				}
 			}
 		);
 		return response.data;
@@ -153,14 +174,14 @@ class ShowsService extends BaseService {
 	 * @example
 	 * ShowsService.fetchTvShowsList("popular");
 	 */
-	static fetchTvShowsList = cache(async (listType: string) => {
+	static fetchTvShowsList = this.safeApiCall(async (listType: string) => {
 		const response = await this.getInstance().axiosInstance.get(
 			`/tv/${listType}`,
 			{
 				params: {
 					language: "en-US",
 					page: 1,
-				},
+				}
 			}
 		);
 		return response.data;
@@ -172,7 +193,7 @@ class ShowsService extends BaseService {
 	 * @param {MediaType} mediaType - The type of media (movie or tv)
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchGenres = cache(async (mediaType: MediaType) => {
+	static fetchGenres = this.safeApiCall(async (mediaType: MediaType) => {
 		const response = await this.getInstance().axiosInstance.get(
 			`/genre/${mediaType}/list`
 		);

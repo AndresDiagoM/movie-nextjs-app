@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
+import { createPortal } from "react-dom";
 import styles from "./ShowsModal.module.sass";
 
 export const ShowModal = ({
@@ -74,7 +75,7 @@ export const ShowModal = ({
 
 	if (!isVisible) return null;
 
-	return (
+	return createPortal(
 		<>
 			{/* Backdrop for stop scrolling of the page */}
 			<div className={styles.backdrop} onClick={handleClose} />
@@ -145,6 +146,7 @@ export const ShowModal = ({
 					</Link>
 				</div>
 			</div>
-		</>
+		</>,
+		document.body
 	);
 };
