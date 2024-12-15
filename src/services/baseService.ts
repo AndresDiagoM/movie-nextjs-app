@@ -5,6 +5,7 @@ import axios, {
 	type AxiosRequestConfig,
 	type InternalAxiosRequestConfig,
 } from "axios";
+import { cache } from "react";
 const BEARER_TOKEN = env.NEXT_PUBLIC_TMDB_TOKEN;
 
 /**
@@ -91,6 +92,47 @@ class BaseService {
 	static isFulfilled = <T>(
 		input: PromiseSettledResult<T>
 	): input is PromiseFulfilledResult<T> => input.status === "fulfilled";
+
+	/**
+	 * Handles API errors with specific error messages
+	 * @protected
+	 * @param {unknown} error - The error object
+	 * @throws {Error} - A formatted error message
+	 */
+	protected static handleApiError(error: unknown) {
+		if (axios.isAxiosError(error)) {
+			const axiosError = error as AxiosError;
+			switch (axiosError.response?.status) {
+				case 404:
+					throw new Error('Resource not found - Please check if the requested content exists');
+				case 401:
+					throw new Error('Unauthorized - Please check your API key');
+				case 429:
+					throw new Error('Too many requests - Please try again later');
+				default:
+					throw new Error(`API Error: ${axiosError.message}`);
+			}
+		}
+		throw error;
+	}
+
+	/**
+	 * Wraps API calls with error handling and caching
+	 * @protected
+	 * @param {Function} apiCall - The API call function to execute
+	 * @returns {Function} - Cached function with the same parameters
+	 */
+	protected static safeApiCall<TArgs extends unknown[], TReturn>(
+		apiCall: (...args: TArgs) => Promise<TReturn>
+	): (...args: TArgs) => Promise<TReturn> {
+		return cache(async (...args: TArgs) => {
+			try {
+				return await apiCall(...args);
+			} catch (error) {
+				throw this.handleApiError(error);
+			}
+		});
+	}
 }
 
 export default BaseService;

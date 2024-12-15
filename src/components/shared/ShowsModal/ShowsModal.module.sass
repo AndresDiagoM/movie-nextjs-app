@@ -15,7 +15,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
     height: 90%
     width: 80%
-    z-index: 50 // Added z-index to ensure modal is on top
+    z-index: 9999 // Increased z-index significantly
     // overflow-y: auto
     border: .7px solid white
     overflow: hidden // Ensure border radius is respected
@@ -114,4 +114,4 @@
     width: 100%
     height: 100%
     background-color: rgba(0, 0, 0, 0.8) // Adjusted opacity to match the original
-    z-index: 40
+    z-index: 9998 // Increased z-index to be just below modal but above everything else

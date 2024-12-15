@@ -29,7 +29,7 @@ export default async function Home() {
 			{/* Hero Section */}
 			<MovieHero randomShow={randomShow} />
 
-			<div className="relative pt-0 z-20 p-8 text-white text-center flex-1 space-y-8">
+			<div className="relative pt-0 p-8 text-white text-center flex-1 space-y-8">
 				{/* Trending Shows, series and movies */}
 				<ShowsContainer shows={shows.results} title="Trending Shows Week" />
 
