@@ -8,6 +8,12 @@ export const env = createEnv({
 	 */
 	server: {
 		NODE_ENV: z.enum(["development", "test", "production"]),
+		GITHUB_ID: z.string(),
+		GITHUB_SECRET: z.string(),
+		GOOGLE_ID: z.string(),
+		GOOGLE_SECRET: z.string(),
+		NEXTAUTH_SECRET: z.string(),
+		NEXTAUTH_URL: z.string().url(),
 	},
 
 	/**
@@ -37,6 +43,12 @@ export const env = createEnv({
 	 */
 	runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
+		GITHUB_ID: process.env.GITHUB_ID,
+		GITHUB_SECRET: process.env.GITHUB_SECRET,
+		GOOGLE_ID: process.env.GOOGLE_ID,
+		GOOGLE_SECRET: process.env.GOOGLE_SECRET,
+		NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+		NEXTAUTH_URL: process.env.NEXTAUTH_URL,
 
 		// Client-side env vars
 		NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,

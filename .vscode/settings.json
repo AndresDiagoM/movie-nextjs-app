@@ -25,6 +25,7 @@
 		"README.md": "README.serverless.md, serverless.yml, secrets_manager.yml"
 	},
 	"cSpell.words": [
+		"apparence",
 		"facebook",
 		"flix",
 		"Flix",
@@ -36,10 +37,12 @@
 		"linkedin",
 		"modestbranding",
 		"nextjs",
+		"rgba",
 		"runtimes",
 		"tmdb",
 		"vidsrc",
 		"VIDSRC",
+		"xxlarge",
 		"YOUTUBE"
 	]
 }

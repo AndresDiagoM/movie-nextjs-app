@@ -25,13 +25,11 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 	const [isTvShow, setIsTvShow] = React.useState<boolean>(false);
 	const [currentService, setCurrentService] =
 		React.useState<string>(StreamingService);
+	const [seasonsVisible, setSeasonsVisible] = React.useState(false);
 
 	// handle video url
 	const [videoUrl, setVideoUrl] = React.useState<string>("");
 	const [selectedSeason, setSelectedSeason] = React.useState<number | null>(
-		null
-	);
-	const [selectedEpisode, setSelectedEpisode] = React.useState<number | null>(
 		null
 	);
 
@@ -66,33 +64,43 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 
 	const handleSeasonSelect = (seasonNumber: number) => {
 		setSelectedSeason(seasonNumber === selectedSeason ? null : seasonNumber);
-		setSelectedEpisode(null);
 	};
 
 	const handleEpisodeSelect = (episodeNumber: number) => {
-		setSelectedEpisode(episodeNumber);
 		if (currentService.includes("vidsrc.cc")) {
 			setVideoUrl(
-				`${currentService}${mediaType}/${show?.id}/${selectedSeason}/${selectedEpisode}`
+				`${currentService}${mediaType}/${show?.id}/${selectedSeason}/${episodeNumber}`
 			);
 		} else if (currentService.includes("vidsrc.xyz")) {
 			setVideoUrl(
-				`${currentService}${mediaType}/${show?.id}/${selectedSeason}-${selectedEpisode}`
+				`${currentService}${mediaType}/${show?.id}/${selectedSeason}-${episodeNumber}`
 			);
 		}
 		console.log("[MOVIES] Video URL: ", videoUrl);
 	};
 
+	const toggleSeasons = () => {
+		setSeasonsVisible(!seasonsVisible);
+	};
+
 	return (
-		<div
-			className="relative bg-cover bg-center min-h-screen flex flex-col"
-			style={{
-				backgroundImage: `url(https://image.tmdb.org/t/p/original${show.backdrop_path})`,
-			}}
-		>
-			<div className="absolute inset-0 bg-black opacity-50"></div>
-			<div className="relative pt-20 z-20 p-8 text-white text-center flex-grow">
-				<h2 className="text-4xl font-bold">{show.title || show.name}</h2>
+		<main className="min-h-screen">
+			{/* Background Image Container */}
+			<div className="fixed inset-0 -z-10">
+				<div
+					className="absolute inset-0 bg-cover bg-center"
+					style={{
+						backgroundImage: `url(https://image.tmdb.org/t/p/original${show?.backdrop_path})`,
+					}}
+				/>
+				<div className="absolute inset-0 bg-black/50" />
+			</div>
+
+			{/* Content Container */}
+			<div className="relative pt-20 p-8 text-white">
+
+				{/* Show Title */}
+				<h2 className="text-4xl font-bold text-center mb-6">{show?.title || show?.name}</h2>
 
 				{/* Video Player */}
 				<div className="flex justify-center mt-4">
@@ -102,41 +110,53 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 				{/* If is tv show, show number of seasons, and episodes */}
 				{isTvShow && (
 					<div className="pt-4 mt-4">
-						<p className="text-lg">
+						<p className="text-lg text-center">
 							Number of Seasons: {show.number_of_seasons} | Number of Episodes:{" "}
 							{show.number_of_episodes}
 						</p>
-						<div className="mt-4">
-							{show.seasons?.map((season) => (
-								<div key={season.id} className="mb-4">
-									<button
-										onClick={() => handleSeasonSelect(season.season_number!)}
-										className="px-4 py-2 bg-gray-700 text-white rounded"
-									>
-										{season.name}
-									</button>
-									{selectedSeason === season.season_number && (
-										<div className="mt-2">
-											{season.episode_count !== null &&
-												Array.from({ length: season.episode_count }, (_, i) => (
-													<button
-														key={i}
-														onClick={() => handleEpisodeSelect(i + 1)}
-														className="mr-2 px-2 py-1 bg-gray-500 text-white rounded"
-													>
-														Episode {i + 1}
-													</button>
-												))}
-										</div>
-									)}
-								</div>
-							))}
+						
+						<div className="flex justify-center mt-4">
+							<button
+								onClick={toggleSeasons}
+								className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+							>
+								{seasonsVisible ? 'Hide Seasons' : 'Show Seasons'}
+							</button>
 						</div>
+
+						{seasonsVisible && (
+							<div className="mt-6 flex flex-wrap justify-center gap-4">
+								{show.seasons?.map((season) => (
+									<div key={season.id} className="mb-4">
+										<button
+											onClick={() => handleSeasonSelect(season.season_number!)}
+											className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
+										>
+											{season.name}
+										</button>
+										{selectedSeason === season.season_number && (
+											<div className="mt-2 flex flex-wrap gap-2">
+												{season.episode_count !== null &&
+													Array.from({ length: season.episode_count }, (_, i) => (
+														<button
+															key={i}
+															onClick={() => handleEpisodeSelect(i + 1)}
+															className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-400"
+														>
+															Episode {i + 1}
+														</button>
+													))}
+											</div>
+										)}
+									</div>
+								))}
+							</div>
+						)}
 					</div>
 				)}
 
 				{/* Buttons to switch streaming services */}
-				<div className="pt-4 mt-4">
+				<div className="pt-4 mt-4 text-center">
 					<button
 						onClick={() => handleServiceChange(StreamingService)}
 						className="mr-4 px-4 py-2 bg-blue-500 text-white rounded"
@@ -152,12 +172,12 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 				</div>
 
 				{/* Show Details */}
-				<p className="mt-4 text-lg">
+				<p className="mt-4 text-lg text-center">
 					Release Date: {show.release_date || show.first_air_date}
 				</p>
-				<p className="mt-2 text-lg">Overview: {show.overview}</p>
+				<p className="mt-2 text-lg text-center">Overview: {show.overview}</p>
 			</div>
-		</div>
+			</main>
 	);
 };
 

@@ -1,3 +1,6 @@
+"use client";
+
+import useWindowSize from "app/hooks/useWindowSize";
 import { Show } from "app/types";
 import Link from "next/link";
 import { FaPlay } from "react-icons/fa";
@@ -5,13 +8,21 @@ import { FaCircleInfo } from "react-icons/fa6";
 import styles from "./MovieHero.module.sass";
 
 export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
+	const { width } = useWindowSize();
+
 	if (!randomShow) return null;
+	const imageUrl = `https://image.tmdb.org/t/p/${
+		width <= 768 ? "w780" : "original"
+	}${randomShow.backdrop_path}`;
+
+	console.log("Width: ", width);
+	console.log("imageUrl: ", imageUrl);
 
 	return (
 		<div
 			className={styles.MovieHome}
 			style={{
-				backgroundImage: `url(https://image.tmdb.org/t/p/original${randomShow.backdrop_path})`,
+				backgroundImage: `url(${imageUrl})`,
 			}}
 		>
 			<div className={styles.overlay}></div>
