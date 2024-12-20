@@ -14,6 +14,10 @@
     text-align: left
     align-items: left
     padding: 0 20px
+    @media screen and (max-width: 768px)
+        height: 90vh
+        background-size: cover
+        background-position: center
 
 .overlay // Add this for apparence of overlay, opacity for being able to read the text
     position: absolute
@@ -44,11 +48,16 @@
     font-weight: 700
     // color: variables.$color-white // color of the text
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+    @media screen and (max-width: 768px)
+        margin-left: 0
+        width: 100%
 
 
 .MovieHomeTitle
     font-size: variables.$font-size-xxlarge
     margin-bottom: 20px
+    @media screen and (max-width: 768px)
+        font-size: 2rem
 
 .MovieHomeStatsContainer
     display: flex
@@ -66,7 +75,7 @@
 .MovieHomeDescription
     font-size: variables.$font-size-medium
     margin-bottom: 20px
-    max-width: 40%
+    max-width: 100%
     font-size: 1rem
     font-weight: 400
 
