@@ -93,3 +93,10 @@ https://vidsrc.cc/v2/embed/type/season/episode
 
 https://vidsrc.cc/v2/embed/tv/tt0944947/1/5
 ```
+
+
+## Wiki pages
+
+For detailed information on authentication and using NextAuth.js, please refer to the [Wiki](https://github.com/AndresDiagoM/movie-nextjs-app/wiki) pages.
+
+
