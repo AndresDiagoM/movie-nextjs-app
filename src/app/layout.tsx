@@ -31,7 +31,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<head>{/* head is for meta tags, title, styles, scripts, etc. */}</head>
+			<head>{/* head is for meta tags, title, styles, scripts, etc. */}
+				<meta
+                    name="google-site-verification"
+                    content="5AVDCAjEnF-JVjYdBcUv2UoXux4FSTN7uBYzO9XYxs8"
+                />
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
 			>
