@@ -11,12 +11,12 @@ import styles from "./ShowsModal.module.sass";
 
 export const ShowModal = ({
 	movie,
-	onClose,
-	mediaType, // Add mediaType prop
+	onCloseAction,
+	mediaType,
 }: {
 	movie: Show;
-	onClose: () => void;
-	mediaType?: MediaType;
+	onCloseAction: () => void;
+	mediaType: MediaType;
 }) => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
@@ -29,7 +29,7 @@ export const ShowModal = ({
 
 	const handleClose = () => {
 		setIsVisible(false);
-		onClose();
+		onCloseAction();
 	};
 	const handlePlay = () => {
 		if (showTrailer && trailerUrl) {
@@ -50,7 +50,7 @@ export const ShowModal = ({
 
 		// get the trailer
 		const trailer = async () => {
-			const mediaType = movie.media_type === "tv" ? MediaType.TV : MediaType.MOVIE;
+			// const mediaType = movie.media_type === "tv" ? MediaType.TV : MediaType.MOVIE;
 			const data = await ShowsService.fetchShowTrailer(
 				mediaType,
 				movie.id
@@ -140,7 +140,7 @@ export const ShowModal = ({
 
 					{/* Buttons */}
 					<Link
-						href={movie.media_type === 'tv' 
+						href={mediaType === 'tv' 
 							? `/series/${movie.id}?mediaType=tv` 
 							: `/movies/${movie.id}?mediaType=movie`}
 						passHref

@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { CustomNextArrow, CustomPrevArrow } from "./CustomArrows";
 
-export const ShowsContainer = ({ shows, title, mediaType }: { shows: Show[], title: string, mediaType?: MediaType }) => {
+export const ShowsContainer = ({ shows, title, mediaType }: { shows: Show[], title: string, mediaType: MediaType }) => {
 	const [selectedMovie, setSelectedMovie] = useState<Show | null>(null);
 
 	useEffect(() => {
@@ -88,7 +88,7 @@ export const ShowsContainer = ({ shows, title, mediaType }: { shows: Show[], tit
 				<ShowModal
 					movie={selectedMovie}
 					mediaType={mediaType}
-					onClose={() => setSelectedMovie(null)}
+					onCloseAction={() => setSelectedMovie(null)}
 				/>
 			)}
 		</div>
