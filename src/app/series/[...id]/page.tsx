@@ -9,7 +9,7 @@ import React from "react";
 const StreamingService = env.NEXT_PUBLIC_VIDSRC_API_URL;
 const StreamingService2 = env.NEXT_PUBLIC_VIDSRC2_API_URL;
 
-interface MoviesProps {
+interface SeriesProps {
 	params: Promise<{ id: string }>;
 	searchParams: Promise<{ mediaType: string }>;
 }
@@ -18,7 +18,7 @@ const fetchShowDetails = async (id: number, mediaType: MediaType) => {
 	return await ShowsService.fetchShowDetails(id, mediaType);
 };
 
-const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
+const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
 	const { id } = React.use(params);
 	const { mediaType } = React.use(searchParams);
 	const [show, setShow] = React.useState<Show | null>(null);
@@ -27,6 +27,9 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 
 	// handle video url
 	const [videoUrl, setVideoUrl] = React.useState<string>("");
+	const [selectedSeason, setSelectedSeason] = React.useState<number | null>(
+		null
+	);
 
 	React.useEffect(() => {
 		const showId = Number(id);
@@ -45,12 +48,29 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 		return <div>Loading...</div>;
 	}
 
-	console.log("Params: ", id, " Media Type: ", mediaType);
-	console.log("Show: ", show);
-	console.log("Video URL: ", videoUrl);
+	// console.log("Params: ", id, " Media Type: ", mediaType);
+	// console.log("Show: ", show);
+	// console.log("Video URL: ", videoUrl);
 
 	const handleServiceChange = (service: string) => {
 		setCurrentService(service);
+	};
+
+	const handleSeasonSelect = (seasonNumber: number) => {
+		setSelectedSeason(seasonNumber === selectedSeason ? null : seasonNumber);
+	};
+
+	const handleEpisodeSelect = (episodeNumber: number) => {
+		if (currentService.includes("vidsrc.cc")) {
+			setVideoUrl(
+				`${currentService}${mediaType}/${show?.id}/${selectedSeason}/${episodeNumber}`
+			);
+		} else if (currentService.includes("vidsrc.xyz")) {
+			setVideoUrl(
+				`${currentService}${mediaType}/${show?.id}/${selectedSeason}-${episodeNumber}`
+			);
+		}
+		console.log("[MOVIES] Search Episode Season and Number: ", videoUrl);
 	};
 
 	return (
@@ -76,6 +96,55 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 				{/* Video Player */}
 				<div className="flex justify-center mt-4">
 					<VideoPlayer url={videoUrl} height="600px" width="80%" />
+				</div>
+
+				{/* show number of seasons, and episodes */}
+				<div className="pt-4 mt-4">
+					<p className="text-lg text-center">
+						Number of Seasons: {show.number_of_seasons} | Number of Episodes:{" "}
+						{show.number_of_episodes}
+					</p>
+					<div className="mt-6">
+						{/* Season Select Dropdown */}
+						<div className="w-full max-w-xs mx-auto">
+							<select
+								value={selectedSeason || ""}
+								onChange={(e) => handleSeasonSelect(Number(e.target.value))}
+								className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+							>
+								<option value="">Select Season</option>
+								{show.seasons?.map((season) => (
+									<option key={season.id} value={season.season_number ?? undefined}>
+										{season.name}
+									</option>
+								))}
+							</select>
+						</div>
+
+						{/* Episodes Grid */}
+						{selectedSeason && (
+							<div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 px-4">
+								{show.seasons?.find((s) => s.season_number === selectedSeason)
+									?.episode_count &&
+									Array.from(
+										{
+											length: show.seasons.find(
+												(s) => s.season_number === selectedSeason
+											)!.episode_count!,
+										},
+										(_, i) => (
+											<button
+												key={i}
+												onClick={() => handleEpisodeSelect(i + 1)}
+												className="px-3 py-2 bg-gray-500 text-white rounded hover:bg-gray-400 text-sm"
+											>
+												Episode {i + 1}
+											</button>
+										)
+									)}
+							</div>
+						)}
+					</div>
 				</div>
 
 				{/* Buttons to switch streaming services */}
@@ -104,4 +173,4 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 	);
 };
 
-export default MoviesId;
+export default SeriesId;

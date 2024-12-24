@@ -37,7 +37,7 @@ export const ShowModal = ({
 		}
 	};
 
-	// console.log("[MovieModal] Movie: ", movie, movie.media_type);
+	// console.log("[ShowModal] Movie: ", movie, movie.media_type);
 
 	useEffect(() => {
 		const details = async () => {
@@ -140,7 +140,9 @@ export const ShowModal = ({
 
 					{/* Buttons */}
 					<Link
-						href={`/movies/${movie.id}?mediaType=${movie.media_type ?? "movie"}`}
+						href={movie.media_type === 'tv' 
+							? `/series/${movie.id}?mediaType=tv` 
+							: `/movies/${movie.id}?mediaType=movie`}
 						passHref
 					>
 						<button className={styles.infoButton}>More Info</button>

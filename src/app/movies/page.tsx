@@ -21,13 +21,13 @@ const Movies: React.FC = async () => {
 	// fetch movie list by genre action, genre_id 12
 	const actionMovies = await ShowsService.fetchDiscoverShows(
 		MediaType.MOVIE,
-		28
+		{ with_genres: 28 }
 	);
 
 	// fetch movie list by genre comedy, genre_id 35
 	const comedyMovies = await ShowsService.fetchDiscoverShows(
 		MediaType.MOVIE,
-		35
+		{ with_genres: 35 }
 	);
 
 	return (

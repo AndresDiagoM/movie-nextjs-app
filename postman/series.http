@@ -22,7 +22,7 @@ Authorization: Bearer {{tmdb_token_env}}
 #------------------- TV SHOW lists ------------------
 
 ### GET /popular  ?api_key={{tmdb_token}}
-GET {{tmdb_host}}/3/tv/popular
+GET {{tmdb_host}}/3/tv/popular?language=es-ES&page=1&origin_country=US
 Authorization: Bearer {{tmdb_token_env}}
 
 
@@ -33,4 +33,12 @@ Authorization: Bearer {{tmdb_token_env}}
 
 ### GET /search/multi  &query={{query}}
 GET {{tmdb_host}}/3/search/multi?query=whiplash
+Authorization: Bearer {{tmdb_token_env}}
+
+### GET /discover/tv  &query={{query}}
+GET {{tmdb_host}}/3/discover/tv?language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_origin_country=US,CO,MX
+Authorization: Bearer {{tmdb_token_env}}
+
+### GET /genre/tv
+GET {{tmdb_host}}/3/genre/tv/list?language=en
 Authorization: Bearer {{tmdb_token_env}}
