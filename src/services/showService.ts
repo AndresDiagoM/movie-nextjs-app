@@ -57,20 +57,20 @@ class ShowsService extends BaseService {
 	 * @param {number} genreId - The ID of the genre
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchDiscoverShows = this.safeApiCall(async (mediaType: MediaType, genreId: number) => {
-		const response = await this.getInstance().axiosInstance.get(
-			`/discover/${mediaType}`,
-			{
-				params: {
-					language: "en-US",
-					primary_release_year: 2024,
-					sort_by: "popularity.desc",
-					page: 1,
-					limit: 1,
-					with_genres: genreId,
-				},
-			}
-		);
+	static fetchDiscoverShows = this.safeApiCall(async (mediaType: MediaType, optionalParams: Record<string, string | number> = {}) => {
+		const defaultParams = {
+			language: "en-US",
+			primary_release_year: 2024,
+			sort_by: "popularity.desc",
+			page: 1,
+			limit: 1
+		};
+
+		const params = { ...defaultParams, ...optionalParams };
+
+		const response = await this.getInstance().axiosInstance.get(`/discover/${mediaType}`, {
+			params,
+		});
 		return response.data;
 	});
 
