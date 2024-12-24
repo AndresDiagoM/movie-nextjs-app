@@ -50,7 +50,7 @@ export const ShowModal = ({
 
 		// get the trailer
 		const trailer = async () => {
-			const mediaType = movie.media_type === "tv" ? "tv" : "movie";
+			const mediaType = movie.media_type === "tv" ? MediaType.TV : MediaType.MOVIE;
 			const data = await ShowsService.fetchShowTrailer(
 				mediaType,
 				movie.id
