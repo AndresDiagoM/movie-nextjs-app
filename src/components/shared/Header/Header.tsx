@@ -10,6 +10,8 @@ import UserMenu from "./UserMenu";
 export const Header = () => {
     const { data: session } = useSession();
 
+    // console.log(session);
+
     return (
         <header className="fixed top-0 left-0 w-full z-20 text-white bg-gradient-to-b from-black/80 to-transparent">
             <nav className="flex items-center justify-between p-4 lg:p-6 w-full max-w-6xl mx-auto">

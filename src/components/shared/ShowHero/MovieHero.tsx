@@ -15,8 +15,8 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 		width <= 768 ? "w780" : "original"
 	}${randomShow.backdrop_path}`;
 
-	console.log("Width: ", width);
-	console.log("imageUrl: ", imageUrl);
+	// console.log("Width: ", width);
+	// console.log("imageUrl: ", imageUrl);
 
 	return (
 		<div

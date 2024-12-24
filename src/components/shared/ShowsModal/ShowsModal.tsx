@@ -50,11 +50,12 @@ export const ShowModal = ({
 
 		// get the trailer
 		const trailer = async () => {
+			const mediaType = movie.media_type === "tv" ? MediaType.TV : MediaType.MOVIE;
 			const data = await ShowsService.fetchShowTrailer(
-				mediaType || movie.media_type,
+				mediaType,
 				movie.id
 			);
-			console.log("[MovieModal] Movie trailer: ", data);
+			// console.log("[MovieModal] Movie trailer: ", mediaType , movie.media_type);
 			if (data.results.length) {
 				setShowTrailer(true);
 				setTrailerUrl(`https://www.youtube.com/embed/${data.results[0].key}`);
