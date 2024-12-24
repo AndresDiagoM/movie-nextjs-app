@@ -1,18 +1,34 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense } from "react";
 
 function SignInContent() {
+    const { status } = useSession();
+    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const searchParams = useSearchParams();
     const callbackUrl = searchParams?.get("callbackUrl") || "/";
+
+    useEffect(() => {
+        if (status === "authenticated") {
+            router.push("/");
+        }
+    }, [status, router]);
+
+    if (status === "loading" || status === "authenticated") {
+        return (
+            <div className="w-full max-w-md space-y-8 rounded-lg bg-white/10 p-6 shadow-md text-center">
+                <h2 className="text-2xl font-bold">Loading...</h2>
+            </div>
+        );
+    }
 
     const handleCredentialsSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
 			{
 				protocol: 'https',
 				hostname: env.NEXT_PUBLIC_TMDB_IMAGE_DOMAIN,
-				},
+			},
 			{
 				protocol: 'https',
 				hostname: 'www.google.com',
@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'github.com',
+				},
+			{
+				protocol: 'https',
+				hostname: 'lh3.googleusercontent.com',
 			},
 		],
 	},

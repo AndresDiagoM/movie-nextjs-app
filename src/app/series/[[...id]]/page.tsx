@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -10,7 +12,13 @@ interface SeriesProps {
 	searchParams: Promise<{ mediaType: string }>;
 }
 
-const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
+async function SeriesId({ params, searchParams }: SeriesProps) {
+	const session = await getServerSession();
+
+	if (!session) {
+		redirect("/api/auth/signin");
+	}
+
 	return (
 		<div className="pt-20">
 			<h2>Series ids</h2>
@@ -18,6 +26,6 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
 			<p>Search Params: {JSON.stringify(searchParams)}</p>
 		</div>
 	);
-};
+}
 
 export default SeriesId;
