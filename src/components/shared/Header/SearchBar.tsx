@@ -1,15 +1,26 @@
 "use client";
 
-import { useRef, useEffect, forwardRef, ForwardedRef } from "react";
+import { useRef, useEffect, forwardRef, useImperativeHandle } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useSearchStore } from "app/stores/search";
 import ShowsService from "app/services/showService";
 import { useRouter } from "next/navigation";
 
-const SearchBar = forwardRef((_props, ref: ForwardedRef<HTMLInputElement>) => {
+export interface SearchBarRef {
+    focus: () => void;
+}
+
+const SearchBar = forwardRef<SearchBarRef, object>((props, ref) => {
     const router = useRouter();
     const searchRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const searchStore = useSearchStore();
+
+    useImperativeHandle(ref, () => ({
+        focus: () => {
+            inputRef.current?.focus();
+        }
+    }));
 
     const handleSearchInput = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchValue = event.target.value;
@@ -40,10 +51,13 @@ const SearchBar = forwardRef((_props, ref: ForwardedRef<HTMLInputElement>) => {
     }, [searchRef, searchStore]);
 
     useEffect(() => {
-        if (searchStore.isOpen && ref && 'current' in ref && ref.current) {
-            ref.current.focus();
+        if (searchStore.isOpen) {
+            // Focus the input when search is opened
+            setTimeout(() => {
+                inputRef.current?.focus();
+            }, 0);
         }
-    }, [searchStore.isOpen, ref]);
+    }, [searchStore.isOpen]);
 
     return (
         <div className="relative" ref={searchRef}>
@@ -59,7 +73,7 @@ const SearchBar = forwardRef((_props, ref: ForwardedRef<HTMLInputElement>) => {
                 <div className="flex ml-0 left-0 w-full bg-transparent">
                     <input
                         type="text"
-                        ref={ref}
+                        ref={inputRef}
                         value={searchStore.query}
                         onChange={handleSearchInput}
                         placeholder="Search..."
