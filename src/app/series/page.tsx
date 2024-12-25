@@ -36,7 +36,7 @@ const Series: React.FC = async () => {
 
 	return (
 		<div className="pt-0 min-h-screen flex flex-col">
-			<MovieHero randomShow={randomShow} />
+			<MovieHero randomShow={randomShow} mediaType={MediaType.TV} />
 
 			<div className="relative pt-0 z-20 p-8 text-white text-center flex-1 space-y-8">
 				<ShowsContainer
