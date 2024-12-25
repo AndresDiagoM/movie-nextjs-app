@@ -38,6 +38,8 @@ export const ShowModal = ({
 	};
 
 	// console.log("[ShowModal] Movie: ", movie, movie.media_type);
+	const showMediaType = movie.media_type || mediaType;
+	// console.log("[ShowModal] Show media type: ", showMediaType, movie.media_type);
 
 	useEffect(() => {
 		const details = async () => {
@@ -52,7 +54,7 @@ export const ShowModal = ({
 		const trailer = async () => {
 			// const mediaType = movie.media_type === "tv" ? MediaType.TV : MediaType.MOVIE;
 			const data = await ShowsService.fetchShowTrailer(
-				mediaType,
+				showMediaType,
 				movie.id
 			);
 			// console.log("[MovieModal] Movie trailer: ", mediaType , movie.media_type);
@@ -62,7 +64,7 @@ export const ShowModal = ({
 			}
 		};
 		trailer();
-	}, [movie, mediaType]);
+	}, [movie, mediaType, showMediaType]);
 
 	useEffect(() => {
 		if (showTrailer) {
@@ -140,7 +142,7 @@ export const ShowModal = ({
 
 					{/* Buttons */}
 					<Link
-						href={mediaType === 'tv' 
+						href={showMediaType === 'tv' 
 							? `/series/${movie.id}?mediaType=tv` 
 							: `/movies/${movie.id}?mediaType=movie`}
 						passHref

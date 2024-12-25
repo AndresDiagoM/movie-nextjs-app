@@ -1,13 +1,19 @@
 "use client";
 
 import useWindowSize from "app/hooks/useWindowSize";
-import { Show } from "app/types";
+import { MediaType, Show } from "app/types";
 import Link from "next/link";
 import { FaPlay } from "react-icons/fa";
-import { FaCircleInfo } from "react-icons/fa6";
+// import { FaCircleInfo } from "react-icons/fa6";
 import styles from "./MovieHero.module.sass";
 
-export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
+export const MovieHero = ({
+	randomShow,
+	mediaType,
+}: {
+	randomShow?: Show;
+	mediaType?: MediaType;
+}) => {
 	const { width } = useWindowSize();
 
 	if (!randomShow) return null;
@@ -17,6 +23,7 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 
 	// console.log("Width: ", width);
 	// console.log("imageUrl: ", imageUrl);
+	// console.log("Random Show: ", randomShow);
 
 	return (
 		<div
@@ -43,9 +50,15 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 
 			<div className={styles.MovieHomeButtons}>
 				<Link
-					href={`/movies/${randomShow.id}?mediaType=${
-						randomShow.media_type ?? "movie"
-					}`}
+					href={
+						randomShow.media_type === MediaType.TV
+							? `/series/${randomShow.id}?mediaType=${
+									mediaType ?? MediaType.TV
+							  }`
+							: `/movies/${randomShow.id}?mediaType=${
+									mediaType ?? MediaType.MOVIE
+							  }`
+					}
 					passHref
 				>
 					<button className={styles.playButton}>
@@ -53,7 +66,7 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 					</button>
 				</Link>
 
-				<Link
+				{/* <Link
 					href={`/movies/${randomShow.id}?mediaType=${
 						randomShow.media_type ?? ""
 					}`}
@@ -63,7 +76,7 @@ export const MovieHero = ({ randomShow }: { randomShow?: Show }) => {
 						<FaCircleInfo className={styles.infoIcon} />
 						More Info
 					</button>
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	);

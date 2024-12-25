@@ -10,6 +10,8 @@ import React from "react";
 const SearchPage = () => {
 	const { shows, loading, query } = useSearchStore();
 
+	// console.log("[SearchPage] Shows: ", shows);
+
 	return (
 		<div className="pt-40 min-h-screen">
 			<div className="p-8 text-white text-center space-y-8">
