@@ -58,7 +58,7 @@ export const ShowsContainer = ({ shows, title, mediaType }: { shows: Show[], tit
 	return (
 		<div className="pt-0 background-transparent -mt-20 z-20 relative">
 			<div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-black z-0" />
-			<h1 className="pl-8 text-2xl font-bold mb-4 relative z-10">
+			<h1 className="text-2xl font-bold mb-4 relative z-10">
 				{title}
 			</h1>
 			<div className="relative z-10 mx-auto" style={{ maxWidth: "95vw" }}>

@@ -44,14 +44,14 @@ export const MovieHero = ({
 					| {randomShow.release_date || randomShow.first_air_date}
 				</p>
 			</div>
-			<p className={styles.MovieHomeDescription}>
+			<p className={`${styles.MovieHomeDescription} ${styles.mobileDescription}`}>
 				{randomShow.overview || "No description available"}
 			</p>
 
 			<div className={styles.MovieHomeButtons}>
 				<Link
 					href={
-						randomShow.media_type === MediaType.TV
+						mediaType == MediaType.TV
 							? `/series/${randomShow.id}?mediaType=${
 									mediaType ?? MediaType.TV
 							  }`
