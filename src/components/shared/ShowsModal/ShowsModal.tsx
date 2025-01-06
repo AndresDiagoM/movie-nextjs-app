@@ -131,12 +131,12 @@ export const ShowModal = ({
 					<p className={styles.overview}>{movie.overview}</p>
 					<div className={styles.details}>
 						<p className={styles.match}>
-							{(movieDetails?.vote_average ?? 0) * 10}% Match
+							 {((movieDetails?.vote_average ?? 0) * 10).toFixed(2)}% Match
 						</p>
 						<p>
 							| {movieDetails?.genres?.map((genre) => genre.name).join(", ")} |
 						</p>
-						<p>{movieDetails?.runtime} minutes |</p>
+						{movieDetails?.runtime && <p>{movieDetails?.runtime} minutes |</p>}
 						<p>{movie?.release_date || movie?.first_air_date}</p>
 					</div>
 

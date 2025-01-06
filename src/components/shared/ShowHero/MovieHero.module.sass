@@ -79,6 +79,13 @@
     font-size: 1rem
     font-weight: 400
 
+.mobileDescription
+    @media (max-width: 768px)
+        display: -webkit-box
+        -webkit-line-clamp: 4
+        -webkit-box-orient: vertical
+        overflow: hidden
+
 .MovieHomeButtons
     display: flex
     gap: 20px

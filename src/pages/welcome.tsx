@@ -24,7 +24,7 @@ const WelcomePage: React.FC = () => {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 0.2, duration: 0.8 }}
-						className="text-6xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+						className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
 					>
 						Watch TV Shows Online, Watch Movies Online
 					</motion.h1>
@@ -33,7 +33,7 @@ const WelcomePage: React.FC = () => {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 0.4, duration: 0.8 }}
-						className="text-4xl md:text-5xl font-bold mb-8 text-gray-200"
+						className="text-3xl md:text-4xl font-bold mb-8 text-gray-200"
 					>
 						Free Streaming
 					</motion.h2>
@@ -58,7 +58,7 @@ const WelcomePage: React.FC = () => {
 					>
 						<Link
 							href="/home"
-							className="inline-block bg-gradient-to-r from-gray-100 to-white text-black py-4 px-8 rounded-full font-bold text-lg transition-all hover:from-white hover:to-gray-200 hover:shadow-lg hover:shadow-white/30"
+							className="inline-block bg-gradient-to-r from-gray-100 to-white text-black py-4 px-8 rounded-full font-bold text-lg sm:text-1xl md:text-2xl transition-all hover:from-white hover:to-gray-200 hover:shadow-lg hover:shadow-white/30"
 						>
 							WATCH NOW
 						</Link>

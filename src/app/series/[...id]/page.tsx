@@ -94,8 +94,8 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
 				</h2>
 
 				{/* Video Player */}
-				<div className="flex justify-center mt-4">
-					<VideoPlayer url={videoUrl} height="600px" width="80%" />
+				<div className="flex justify-center mt-4 rounded-lg overflow-hidden">
+					<VideoPlayer url={videoUrl} />
 				</div>
 
 				{/* show number of seasons, and episodes */}
@@ -106,15 +106,18 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
 					</p>
 					<div className="mt-6">
 						{/* Season Select Dropdown */}
-						<div className="w-full max-w-xs mx-auto">
+						<div className="max-w-xs mx-auto text-white w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] text-sm sm:text-base md:text-lg lg:text-xl">
 							<select
 								value={selectedSeason || ""}
 								onChange={(e) => handleSeasonSelect(Number(e.target.value))}
-								className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+								className="w-full px-4 py-2 bg-gray-800 rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
 							>
 								<option value="">Select Season</option>
 								{show.seasons?.map((season) => (
-									<option key={season.id} value={season.season_number ?? undefined}>
+									<option
+										key={season.id}
+										value={season.season_number ?? undefined}
+									>
 										{season.name}
 									</option>
 								))}
@@ -148,16 +151,16 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
 				</div>
 
 				{/* Buttons to switch streaming services */}
-				<div className="pt-4 mt-4 text-center">
+				<div className="flex flex-col pt-4 mt-4 justify-center items-center text-center space-y-4 text-white">
 					<button
 						onClick={() => handleServiceChange(StreamingService)}
-						className="mr-4 px-4 py-2 bg-blue-500 text-white rounded"
+						className="px-4 py-2 bg-gray-800 rounded w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] text-sm sm:text-base md:text-lg lg:text-xl"
 					>
 						Streaming Service 1
 					</button>
 					<button
 						onClick={() => handleServiceChange(StreamingService2)}
-						className="px-4 py-2 bg-green-500 text-white rounded"
+						className="px-4 py-2 bg-gray-800 rounded w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] text-sm sm:text-base md:text-lg lg:text-xl"
 					>
 						Streaming Service 2
 					</button>
