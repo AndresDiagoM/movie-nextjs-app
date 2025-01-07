@@ -1,5 +1,5 @@
 import { env } from "app/env.mjs";
-import { MediaType } from "app/types";
+import { MediaType, Filters } from "app/types";
 import BaseService from "./baseService";
 
 const API_BASE_URL = env.NEXT_PUBLIC_TMDB_API_URL;
@@ -33,22 +33,73 @@ class ShowsService extends BaseService {
 	 * It can search across multiple types (movies, TV shows, etc.) or keywords.
 	 * @method searchShows
 	 * @param {string} query - The search query.
-	 * @param {boolean} [multi=true] - Whether to search across multiple types (default is true).
-	 *                                 If false, it searches for keywords.
+	 * @param {string} [type] - Whether to search for multi, keyword, movie, tv, person, company, or collection.
 	 * @returns {Promise<any>} - The response from the API containing the search results.
 	 */
-	static searchShows = this.safeApiCall(async (query: string, multi = true) => {
-		const param = multi ? "multi" : "keyword";
-		const response = await this.getInstance().axiosInstance.get(
-			`/search/${param}`,
-			{
-				params: {
-					query,
-				},
+	static searchShows = this.safeApiCall(
+		async (query: string, type = "multi") => {
+			const response = await this.getInstance().axiosInstance.get(
+				`/search/${type}`,
+				{
+					params: {
+						query,
+					},
+				}
+			);
+			return response.data;
+		}
+	);
+
+	/**
+	 * Fetches the search results based on the provided query.
+	 * It can search across multiple types (movies, TV shows, etc.) or keywords.
+	 * @method searchShows
+	 * @param {string} query - The search query.
+	 * @param {string} [type] - Whether to search for multi, keyword, movie, tv, person, company, or collection.
+	 * @returns {Promise<any>} - The response from the API containing the search results.
+	 */
+	static searchShows2 = this.safeApiCall(
+		async ({
+			type = "keyword",
+			filters = {} as Filters,
+		}) => {
+			console.log("Type: ", type, " FILTERS: ", filters);
+			if (type === "keyword") {
+				// console.log("Searching for keyword: ", query, filters?.title);
+				const response = await this.getInstance().axiosInstance.get(
+					`/search/${type}`,
+					{
+						params: {
+							query: filters?.title,
+						},
+					}
+				);
+				return response.data;
+			} else if (type === "tv" || type === "movie") {
+				const response = await this.getInstance().axiosInstance.get(
+					`/search/${type}`,
+					{
+						params: {
+							query: filters?.title,
+							year: filters?.year,
+						},
+					}
+				);
+				return response.data;
+			} else {
+				const response = await this.getInstance().axiosInstance.get(
+					`/search/${type}`,
+					{
+						params: {
+							query: filters?.title,
+						},
+					}
+				);
+				return response.data;
 			}
-		);
-		return response.data;
-	});
+			return null
+		}
+	);
 
 	/**
 	 * Fetches the discover series or movies, also by genre
@@ -57,22 +108,30 @@ class ShowsService extends BaseService {
 	 * @param {number} genreId - The ID of the genre
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchDiscoverShows = this.safeApiCall(async (mediaType: MediaType, optionalParams: Record<string, string | number> = {}) => {
-		const defaultParams = {
-			language: "en-US",
-			primary_release_year: 2024,
-			sort_by: "popularity.desc",
-			page: 1,
-			limit: 1
-		};
+	static fetchDiscoverShows = this.safeApiCall(
+		async (
+			mediaType: MediaType,
+			optionalParams: Record<string, string | number> = {}
+		) => {
+			const defaultParams = {
+				language: "en-US",
+				primary_release_year: 2024,
+				sort_by: "popularity.desc",
+				page: 1,
+				limit: 1,
+			};
 
-		const params = { ...defaultParams, ...optionalParams };
+			const params = { ...defaultParams, ...optionalParams };
 
-		const response = await this.getInstance().axiosInstance.get(`/discover/${mediaType}`, {
-			params,
-		});
-		return response.data;
-	});
+			const response = await this.getInstance().axiosInstance.get(
+				`/discover/${mediaType}`,
+				{
+					params,
+				}
+			);
+			return response.data;
+		}
+	);
 
 	/**
 	 * Fetches the details of a show
@@ -81,17 +140,19 @@ class ShowsService extends BaseService {
 	 * @param {MediaType} mediaType - The type of media (movie or tv)
 	 * @returns {Promise<any>} - The response from the API
 	 */
-	static fetchShowDetails = this.safeApiCall(async (id: number, mediaType: MediaType) => {
-		const response = await this.getInstance().axiosInstance.get(
-			`/${mediaType}/${id}`,
-			{
-				params: {
-					language: "en-US",
-				},
-			}
-		);
-		return response.data;
-	});
+	static fetchShowDetails = this.safeApiCall(
+		async (id: number, mediaType: MediaType) => {
+			const response = await this.getInstance().axiosInstance.get(
+				`/${mediaType}/${id}`,
+				{
+					params: {
+						language: "en-US",
+					},
+				}
+			);
+			return response.data;
+		}
+	);
 
 	/**
 	 * Fetches the trending tv shows or movies, by the week or day
@@ -114,12 +175,14 @@ class ShowsService extends BaseService {
 	 * @method fetchShowTrailer
 	 * @param {MediaType} mediaType - The type of media (movie or tv)
 	 */
-	static fetchShowTrailer = this.safeApiCall(async (mediaType: MediaType, id: number) => {
-		const response = await this.getInstance().axiosInstance.get(
-			`/${mediaType}/${id}/videos`
-		);
-		return response.data;
-	});
+	static fetchShowTrailer = this.safeApiCall(
+		async (mediaType: MediaType, id: number) => {
+			const response = await this.getInstance().axiosInstance.get(
+				`/${mediaType}/${id}/videos`
+			);
+			return response.data;
+		}
+	);
 
 	/**
 	 * Fetches the latest movie, just 1 movie
@@ -156,7 +219,7 @@ class ShowsService extends BaseService {
 				params: {
 					language: "en-US",
 					page: 1,
-				}
+				},
 			}
 		);
 		return response.data;
@@ -181,7 +244,7 @@ class ShowsService extends BaseService {
 				params: {
 					language: "en-US",
 					page: 1,
-				}
+				},
 			}
 		);
 		return response.data;

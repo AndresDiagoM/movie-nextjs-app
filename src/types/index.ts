@@ -71,3 +71,10 @@ export interface Genre {
 	id: number;
 	name: string;
 }
+
+export interface Filters {
+    title?: string;
+    year?: string;
+    genre?: string;
+    actor?: string;
+}

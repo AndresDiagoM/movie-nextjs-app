@@ -1,0 +1,41 @@
+@use '../../../sass/variables' as variables
+@use '../../../sass/mixins' as mixins
+
+.skeletonTitle,
+.skeletonStats,
+.skeletonDate,
+.skeletonDescription,
+.skeletonButtons
+    background: variables.$color-gray-light
+    border-radius: 4px
+    margin-bottom: 20px
+    animation: pulse 1.5s infinite ease-in-out
+
+.skeletonTitle
+    height: 40px
+    width: 60%
+
+.skeletonStats
+    height: 20px
+    width: 40%
+
+.skeletonDate
+    height: 20px
+    width: 30%
+
+.skeletonDescription
+    height: 80px
+    width: 100%
+
+.skeletonButtons
+    height: 40px
+    width: 50%
+
+@keyframes pulse
+    0% 
+        opacity: 1
+    50% 
+        opacity: 0.5
+    100% 
+        opacity: 1
+
