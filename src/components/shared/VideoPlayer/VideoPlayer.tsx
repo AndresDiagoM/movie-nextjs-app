@@ -17,7 +17,7 @@ export const VideoPlayer = ({ url }: VideoPlayerProps): JSX.Element => {
 		<iframe
 			src={url}
 			allowFullScreen
-			// sandbox="allow-same-origin allow-scripts allow-popups"
+			sandbox="allow-same-origin allow-scripts allow-popups"
 			className="w-full sm:w-[100%] md:w-[80%] lg:w-[70%] xl:w-[60%] h-[200px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] 2xl:h-[600px] rounded-lg overflow-hidden"
 		></iframe>
 	);
