@@ -9,7 +9,7 @@
 			"tmdb_token": ""
 		},
 		"local": {
-			"hostname": "http://localhost:8080/api"
+			"hostname": "http://localhost:3000/api"
 		},
 		"prod": {
 			"hostname": "https://api.example.com"
