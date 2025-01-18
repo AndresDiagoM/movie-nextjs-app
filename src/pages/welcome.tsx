@@ -8,7 +8,7 @@ const WelcomePage: React.FC = () => {
 	return (
 		<div
 			className="relative pt-20 min-h-screen w-full flex flex-col bg-cover bg-center bg-fixed"
-			style={{ backgroundImage: 'url("welcome.jpg")' }}
+			style={{ backgroundImage: 'url("/welcome.jpg")' }}
 		>
 			{/* Gradient overlay */}
 			<div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90"></div>

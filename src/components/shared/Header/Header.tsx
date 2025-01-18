@@ -38,7 +38,7 @@ export const Header = () => {
                             />
                         ) : (
                             <Link 
-                                href="/signin" 
+                                href="auth/signin" 
                                 className="flex items-center bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
                             >
                                 Login
