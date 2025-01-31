@@ -68,6 +68,7 @@ export const ShowsContainer = ({ shows, title, mediaType }: { shows: Show[], tit
 							movie?.poster_path && (
 								<div key={movie?.id} className="relative group px-2">
 									<Image
+										unoptimized
 										src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
 										alt={movie?.title || ""}
 										className="rounded-lg cursor-pointer transform transition-transform duration-300 group-hover:scale-105"

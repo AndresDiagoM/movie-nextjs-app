@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { env } from "app/env.mjs";
+import { prisma } from "app/libs/db";
+import bcrypt from "bcryptjs";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
@@ -29,12 +31,16 @@ const handler = NextAuth({
 			async authorize(credentials) {
 				if (!credentials?.email || !credentials?.password) return null;
 
-				// Add your authentication logic here
-				// For example:
-				// const user = await prisma.user.findUnique({ where: { email: credentials.email }})
-				// if (user && await bcrypt.compare(credentials.password, user.password)) {
-				//     return { id: user.id, email: user.email, name: user.name }
-				// }
+				const user = await prisma.user.findUnique({
+					where: { email: credentials.email },
+				});
+				// console.log("User", user);
+				if (
+					user &&
+					(await bcrypt.compare(credentials.password, user.password))
+				) {
+					return { id: user.id, email: user.email, name: user.name };
+				}
 
 				// For demo purposes:
 				if (
@@ -90,10 +96,10 @@ const handler = NextAuth({
 		// async jwt(token, user, account, profile, isNewUser) { return token }
 		async redirect({ url, baseUrl }) {
 			// Allows relative callback URLs
-			if (url.startsWith("/")) return `${baseUrl}${url}`
+			if (url.startsWith("/")) return `${baseUrl}${url}`;
 			// Allows callback URLs on the same origin
-			else if (new URL(url).origin === baseUrl) return url
-			return baseUrl
+			else if (new URL(url).origin === baseUrl) return url;
+			return baseUrl;
 		},
 	},
 	events: {
