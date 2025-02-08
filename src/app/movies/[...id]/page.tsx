@@ -4,6 +4,7 @@ import { VideoPlayer } from "app/components/shared/VideoPlayer";
 import { env } from "app/env.mjs";
 import ShowsService from "app/services/showService";
 import { MediaType, Show } from "app/types";
+import { getSession } from "next-auth/react";
 import React from "react";
 
 const StreamingService = env.NEXT_PUBLIC_VIDSRC_API_URL;
@@ -40,6 +41,42 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 		};
 		getShowDetails();
 	}, [id, mediaType, currentService]);
+
+	React.useEffect(() => {
+		const registerInWatchedShows = async () => {
+			try {
+				// Check if user is logged in
+				const session = await getSession();
+
+				if (!session) {
+					console.log("User is not logged in");
+					return;
+				}
+
+				// User is logged in
+				const data = {
+					user: session.user,
+					show: show,
+				};
+
+				const res = await fetch("/api/movies", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(data),
+				});
+
+				const result = await res.json();
+				console.log("result", result);
+			} catch (error) {
+				console.error(error);
+			} finally {
+			}
+		};
+
+		registerInWatchedShows();
+	}, [show]);
 
 	if (!show) {
 		return <div>Loading...</div>;

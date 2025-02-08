@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { env } from "app/env.mjs";
 import { prisma } from "app/libs/db";
@@ -7,7 +8,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
-const handler = NextAuth({
+const authOptions = {
 	// Configure one or more authentication providers
 	providers: [
 		GithubProvider({
@@ -73,7 +74,8 @@ const handler = NextAuth({
 	// or use pages: { signIn: "/signin" } to specify a custom page with your custom form
 
 	callbacks: {
-		async signIn({ user, account, profile, email, credentials }) {
+		async signIn() {
+			//{ user, account, profile, email, credentials }
 			try {
 				// Add any custom sign-in validation here
 				return true;
@@ -82,7 +84,15 @@ const handler = NextAuth({
 				return false;
 			}
 		},
-		async jwt({ token, user, account }) {
+		async jwt({
+			token,
+			user,
+			account,
+		}: {
+			token: any;
+			user?: any;
+			account?: any;
+		}) {
 			try {
 				// Add any custom JWT handling here
 				return token;
@@ -94,7 +104,7 @@ const handler = NextAuth({
 		// async redirect(url, baseUrl) { return baseUrl },
 		// async session(session, user) { return session },
 		// async jwt(token, user, account, profile, isNewUser) { return token }
-		async redirect({ url, baseUrl }) {
+		async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
 			// Allows relative callback URLs
 			if (url.startsWith("/")) return `${baseUrl}${url}`;
 			// Allows callback URLs on the same origin
@@ -103,25 +113,43 @@ const handler = NextAuth({
 		},
 	},
 	events: {
-		signIn({ user, account, isNewUser }) {
-			console.log("Signed in", { user, account, isNewUser });
+		signIn({
+			user,
+			account,
+			isNewUser,
+		}: {
+			user: any;
+			account: any;
+			isNewUser?: any;
+		}) {
+			console.log("[NextAuth] Signed in", { user, account, isNewUser });
 		},
-		signOut({ token, session }) {
-			console.log("Signed out", { token, session });
+		signOut({ token, session }: { token: any; session: any }) {
+			console.log("[NextAuth] Signed out", { token, session });
 		},
-		createUser({ user }) {
-			console.log("User created", { user });
+		createUser({ user }: { user: any }) {
+			console.log("[NextAuth] User created", { user });
 		},
-		linkAccount({ user, account, profile }) {
-			console.log("Account linked", { user, account, profile });
+		linkAccount({
+			user,
+			account,
+			profile,
+		}: {
+			user: any;
+			account: any;
+			profile: any;
+		}) {
+			console.log("[NextAuth] Account linked", { user, account, profile });
 		},
-		session({ session, token }) {
-			console.log("Session active", { session, token });
+		session({ session, token }: { session: any; token: any }) {
+			console.log("[NextAuth] Session active", { session, token });
 		},
 	},
 
 	// Enable debug messages in the console if you are having problems
 	debug: process.env.NODE_ENV === "development",
-});
+};
 
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST, authOptions };

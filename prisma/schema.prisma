@@ -30,9 +30,28 @@ model User {
   role        Role     @default(USER)
   isActive    Boolean  @default(true)
   lastLogin   DateTime?
+  watchEntries WatchEntry[]
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+model WatchEntry {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  type        MediaType
+  tmdbId      Int
+  title       String
+  season      Int?
+  episode     Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum MediaType {
+  MOVIE
+  SERIES
 }
