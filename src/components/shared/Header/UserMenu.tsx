@@ -19,6 +19,7 @@ export default function UserMenu({ userName, userImage }: UserMenuProps) {
                 <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
                     {userImage ? (
                         <Image
+                            unoptimized
                             src={userImage}
                             alt={userName}
                             width={32}
