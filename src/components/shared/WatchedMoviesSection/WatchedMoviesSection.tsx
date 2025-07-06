@@ -41,23 +41,29 @@ export const WatchedMoviesSection = () => {
         console.log("[Client] Watched Movies: ", result);
 
         if (result.movieTmdbIds && result.movieTmdbIds.length > 0) {
-          const movies: Show[] = [];
-          // look for each movie in the list
-          for (const movieId of result.movieTmdbIds) {
-            try {
-              const movie = await ShowsService.fetchShowDetails(
-                movieId,
-                MediaType.MOVIE
-              );
-              if (movie) {
-                movies.push(movie);
+          // Fetch all movies in parallel using Promise.all
+          const moviePromises = result.movieTmdbIds.map(
+            async (movieId: string) => {
+              try {
+                return await ShowsService.fetchShowDetails(
+                  parseInt(movieId),
+                  MediaType.MOVIE
+                );
+              } catch (error) {
+                console.error(`Failed to fetch movie ${movieId}:`, error);
+                return null;
               }
-            } catch (error) {
-              console.error(`Failed to fetch movie ${movieId}:`, error);
             }
-          }
-          setContinueWatching(movies);
-          console.log("[Client] Continue Watching: ", movies.length);
+          );
+
+          const movies = await Promise.all(moviePromises);
+          // Filter out null values (failed requests)
+          const validMovies = movies.filter(
+            (movie): movie is Show => movie !== null
+          );
+
+          setContinueWatching(validMovies);
+          console.log("[Client] Continue Watching: ", validMovies.length);
         }
       } catch (error) {
         console.error("[Client] Error fetching watched movies:", error);

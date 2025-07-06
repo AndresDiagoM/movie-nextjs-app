@@ -30,7 +30,7 @@ async function POST(request) {
     }
 
     // Check if the user already has the entry in their list
-    const entryExists = await prisma.WatchEntry.findFirst({
+    const entryExists = await prisma.watchEntry.findFirst({
       where: {
         user: {
           email: data.user.email,
@@ -49,7 +49,7 @@ async function POST(request) {
     }
 
     // Create the show entry in the database
-    const show = await prisma.WatchEntry.create({
+    const show = await prisma.watchEntry.create({
       data: {
         user: {
           connect: {
