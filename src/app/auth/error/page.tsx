@@ -8,6 +8,7 @@ const errorMessages: Record<string, string> = {
     Configuration: "There is a problem with the server configuration.",
     AccessDenied: "You do not have permission to sign in.",
     Verification: "The verification token has expired or has already been used.",
+    CredentialsSignin: "The credentials provided are invalid.",
     Default: "An error occurred. Please try again.",
 };
 
@@ -21,7 +22,7 @@ function ErrorContent() {
             <h2 className="text-2xl font-bold text-red-500">Authentication Error</h2>
             <p className="text-gray-200">{errorMessage}</p>
             <Link 
-                href="/signin"
+                href="/auth/signin"
                 className="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
             >
                 Back to Sign In

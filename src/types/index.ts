@@ -50,7 +50,9 @@ export type Season = {
 
 export interface Movie {
 	id: number;
+	adult: boolean | null;
 	title: string;
+	status: string;
 	original_title: string;
 	overview: string;
 	genre_ids: number[];
@@ -58,13 +60,36 @@ export interface Movie {
 	poster_path: string;
 	backdrop_path: string;
 	release_date: string;
-
+	budget: number;
 	// Additional fields optional
 	genres?: Genre[];
 	imdb_id?: string;
 	origin_country?: string[];
 	runtime?: number;
 	vote_average?: number;
+	vote_count?: number;
+	video?: boolean;
+	production_companies?: ProductionCompany[];
+	production_countries?: ProductionCountry[];
+	spoken_languages?: SpokenLanguage[];
+}
+
+export interface SpokenLanguage {
+	iso_639_1: string;
+	name: string;
+	english_name: string;
+}
+
+export interface ProductionCompany {
+	id: number;
+	logo_path: string | null;
+	name: string;
+	origin_country: string;
+}
+
+export interface ProductionCountry {
+	iso_3166_1: string;
+	name: string;
 }
 
 export interface Genre {

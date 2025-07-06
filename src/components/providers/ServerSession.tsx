@@ -12,7 +12,7 @@ async function getUserSession() {
     // }
 
     const session2 = await getServerSession(authOptions);
-    console.log("Server session", session2);
+    console.log("[Server session] Components ~ providers: ", session2);
 
     return session2;
 }
