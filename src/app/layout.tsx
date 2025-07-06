@@ -30,7 +30,7 @@ export default function RootLayout({
 		pathname !== "/auth/register" &&
 		pathname !== "/auth/error";
 
-	console.log("ShowHEADER", showHeader, pathname);
+	console.log("[Layout] ShowHEADER", showHeader, pathname);
 
 	return (
 		<html lang="en">
