@@ -2,7 +2,7 @@ import getUserSession from "app/components/providers/ServerSession";
 import { MovieHero } from "app/components/shared/ShowHero";
 import { ShowsContainer } from "app/components/shared/ShowsContainer";
 import ShowsService from "app/services/showService";
-import { MediaType } from "app/types";
+import { MediaType, Show } from "app/types";
 import { getRandomMovieFromList } from "app/utils";
 import type { Metadata } from "next";
 import React from "react";
@@ -62,6 +62,20 @@ const Movies: React.FC = async () => {
 	// Fetch the movies list watched by the user
 	const watchedMovies = await fetchWatchedMovies();
 	console.log("[Movies] Watched Movies: ", watchedMovies);
+	const continueWatching: Show[] = [];
+	if (watchedMovies.movieTmdbIds) {
+		// look for each movie in the list
+		for (const movieId of watchedMovies.movieTmdbIds) {
+			const movie = await ShowsService.fetchShowDetails(
+				movieId,
+				MediaType.MOVIE
+			);
+			if (movie) {
+				continueWatching.push(movie);
+			}
+		}
+		console.log("[Movies] Continue Watching: ", continueWatching.length);
+	}
 
 	return (
 		<div className="pt-0 min-h-screen flex flex-col">
@@ -69,6 +83,15 @@ const Movies: React.FC = async () => {
 			<MovieHero randomShow={randomShow} />
 
 			<div className="relative pt-0 z-20 p-8 text-white text-center flex-1 space-y-8">
+				{/* Watched Movies */}
+				{continueWatching.length > 0 && (
+					<ShowsContainer
+						shows={continueWatching}
+						title="Continue Watching"
+						mediaType={MediaType.MOVIE}
+					/>
+				)}
+
 				{/* Latest Movies */}
 				<ShowsContainer
 					shows={latestMovies.results}

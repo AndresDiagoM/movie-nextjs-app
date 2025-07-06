@@ -1,11 +1,11 @@
 "use client";
 
+import AuthProvider from "@/components/providers/SessionProvider";
 import { Footer } from "app/components/shared/Footer";
 import { Header } from "app/components/shared/Header";
-import { usePathname } from "next/navigation";
 import localFont from "next/font/local";
+import { usePathname } from "next/navigation";
 import "./globals.css";
-import AuthProvider from "@/components/providers/SessionProvider";
 
 // Fonts
 const geistSans = localFont({
@@ -25,7 +25,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const pathname = usePathname();
-	const showHeader = pathname !== "/auth/signin" && pathname !== "/auth/register";
+	const showHeader =
+		pathname !== "/auth/signin" &&
+		pathname !== "/auth/register" &&
+		pathname !== "/auth/error";
 
 	console.log("ShowHEADER", showHeader, pathname);
 

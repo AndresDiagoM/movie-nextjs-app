@@ -119,3 +119,6 @@ For detailed information on authentication and using NextAuth.js, please refer t
  -->
 
 
+## DeepWiki 
+
+See the project documentation at [DeepWiki](https://deepwiki.com/AndresDiagoM/movie-nextjs-app/1-overview) for more information on how to use the project and its features.
