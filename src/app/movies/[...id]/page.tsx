@@ -84,10 +84,13 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
         // Check if user is logged in
         const session = await getSession();
 
-        if (!session) {
+        if (!session || !session.user?.email) {
           console.log("User is not logged in");
           return;
         }
+
+        // Only proceed if we have show data
+        if (!show) return;
 
         // User is logged in
         const data = {
@@ -95,7 +98,7 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
           show: show,
         };
 
-        const res = await fetch("/api/movies", {
+        const res = await fetch("/api/shows?type=MOVIE", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -103,11 +106,16 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
           body: JSON.stringify(data),
         });
 
+        if (!res.ok) {
+          const error = await res.json();
+          console.error("Failed to register movie:", error);
+          return;
+        }
+
         const result = await res.json();
-        console.log("result", result);
+        console.log("Movie registered successfully:", result);
       } catch (error) {
-        console.error(error);
-      } finally {
+        console.error("Error registering movie:", error);
       }
     };
 

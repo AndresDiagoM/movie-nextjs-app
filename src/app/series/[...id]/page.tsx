@@ -4,6 +4,7 @@ import { VideoPlayer } from "app/components/shared/VideoPlayer";
 import { env } from "app/env.mjs";
 import ShowsService from "app/services/showService";
 import { MediaType, Show } from "app/types";
+import { getSession } from "next-auth/react";
 import React from "react";
 
 const StreamingService = env.NEXT_PUBLIC_VIDSRC_API_URL;
@@ -78,6 +79,50 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
       return () => clearTimeout(timer);
     }
   }, [isLoading, show]);
+
+  React.useEffect(() => {
+    const registerInWatchedShows = async () => {
+      try {
+        // Check if user is logged in
+        const session = await getSession();
+
+        if (!session || !session.user?.email) {
+          console.log("[Series] User is not logged in");
+          return;
+        }
+
+        // Only proceed if we have show data
+        if (!show) return;
+
+        // User is logged in
+        const data = {
+          user: session.user,
+          show: show,
+        };
+
+        const res = await fetch("/api/shows?type=SERIES", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!res.ok) {
+          const error = await res.json();
+          console.error("Failed to register movie:", error);
+          return;
+        }
+
+        const result = await res.json();
+        console.log("Movie registered successfully:", result);
+      } catch (error) {
+        console.error("Error registering movie:", error);
+      }
+    };
+
+    registerInWatchedShows();
+  }, [show]);
 
   if (isLoading || !show) {
     return (

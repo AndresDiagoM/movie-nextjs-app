@@ -23,7 +23,7 @@ const fetchWatchedMovies = async () => {
 		}
 
 		const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-		const url = new URL("/api/movies", baseUrl);
+		const url = new URL("/api/shows", baseUrl);
 		url.searchParams.append("email", session?.user?.email || "");
 		const res = await fetch(url.toString(), {
 			method: "GET",
