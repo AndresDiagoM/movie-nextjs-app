@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];
@@ -46,9 +47,20 @@ export default function PWAInstallPrompt() {
     const { outcome } = await deferredPrompt.userChoice;
 
     if (outcome === "accepted") {
-      console.log("User accepted the install prompt");
+      // Track successful installation (you can replace with your analytics)
+      // gtag('event', 'pwa_install', { method: 'prompt' });
+
+      // Show success message to user
+      toast.success("App installed successfully! 🎉");
+
+      // Store installation status
+      localStorage.setItem("pwa_installed", "true");
     } else {
-      console.log("User dismissed the install prompt");
+      // Track dismissal for analytics
+      // gtag('event', 'pwa_install_dismissed', { method: 'prompt' });
+      toast("Installation cancelled", {
+        icon: "ℹ️",
+      });
     }
 
     // Clear the deferredPrompt

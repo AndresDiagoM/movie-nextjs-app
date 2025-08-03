@@ -6,6 +6,7 @@ import { Header } from "app/components/shared/Header";
 import { PWAInstallPrompt } from "app/components/shared/PWAInstallPrompt";
 import localFont from "next/font/local";
 import { usePathname } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 // Fonts
@@ -77,7 +78,10 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" />
 
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://yourdomain.com" />
+        <meta
+          name="twitter:url"
+          content="https://movie-nextjs-app-three.vercel.app"
+        />
         <meta name="twitter:title" content="Movie NextJS App" />
         <meta
           name="twitter:description"
@@ -85,7 +89,7 @@ export default function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://yourdomain.com/icon-192x192.png"
+          content="https://movie-nextjs-app-three.vercel.app/icon-192x192.png"
         />
         <meta name="twitter:creator" content="@YourHandle" />
         <meta property="og:type" content="website" />
@@ -95,10 +99,13 @@ export default function RootLayout({
           content="Your favorite movies and series streaming app"
         />
         <meta property="og:site_name" content="Movie NextJS App" />
-        <meta property="og:url" content="https://yourdomain.com" />
+        <meta
+          property="og:url"
+          content="https://movie-nextjs-app-three.vercel.app"
+        />
         <meta
           property="og:image"
-          content="https://yourdomain.com/icon-512x512.png"
+          content="https://movie-nextjs-app-three.vercel.app/icon-512x512.png"
         />
       </head>
       <body
@@ -115,6 +122,31 @@ export default function RootLayout({
 
           {/* PWA Install Prompt */}
           <PWAInstallPrompt />
+
+          {/* Toast notifications */}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: "#1f2937",
+                color: "#fff",
+                border: "1px solid #374151",
+              },
+              success: {
+                iconTheme: {
+                  primary: "#10b981",
+                  secondary: "#fff",
+                },
+              },
+              error: {
+                iconTheme: {
+                  primary: "#ef4444",
+                  secondary: "#fff",
+                },
+              },
+            }}
+          />
         </AuthProvider>
       </body>
     </html>
