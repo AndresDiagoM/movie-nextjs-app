@@ -74,7 +74,7 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
       const timer = setTimeout(() => {
         window.scrollTo(0, 0);
         // Force a layout recalculation
-        document.body.offsetHeight;
+        void document.body.offsetHeight;
       }, 100);
       return () => clearTimeout(timer);
     }
