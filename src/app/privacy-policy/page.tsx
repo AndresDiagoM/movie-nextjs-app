@@ -53,18 +53,19 @@ export default function PrivacyPolicyPage() {
         </li>
         <li>
           <strong>Affiliate</strong> means an entity that controls, is
-          controlled by or is under common control with a party, where "control"
-          means ownership of 50% or more of the shares, equity interest or other
-          securities entitled to vote for election of directors or other
-          managing authority.
+          controlled by or is under common control with a party, where
+          &quot;control&quot; means ownership of 50% or more of the shares,
+          equity interest or other securities entitled to vote for election of
+          directors or other managing authority.
         </li>
         <li>
           <strong>Application</strong> refers to n8n-setup-1, the software
           program provided by the Company.
         </li>
         <li>
-          <strong>Company</strong> (referred to as either "the Company", "We",
-          "Us" or "Our" in this Agreement) refers to n8n-setup-1.
+          <strong>Company</strong> (referred to as either &quot;the
+          Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in
+          this Agreement) refers to n8n-setup-1.
         </li>
         <li>
           <strong>Country</strong> refers to: Colombia
@@ -115,7 +116,7 @@ export default function PrivacyPolicyPage() {
       <h4>Usage Data</h4>
       <p>Usage Data is collected automatically when using the Service.</p>
       <p>
-        Usage Data may include information such as Your Device's Internet
+        Usage Data may include information such as Your Device&apos;s Internet
         Protocol address (e.g. IP address), browser type, browser version, the
         pages of our Service that You visit, the time and date of Your visit,
         the time spent on those pages, unique device identifiers and other
@@ -145,8 +146,8 @@ export default function PrivacyPolicyPage() {
       <p>
         We use this information to provide features of Our Service, to improve
         and customize Our Service. The information may be uploaded to the
-        Company's servers and/or a Service Provider's server or it may be simply
-        stored on Your device.
+        Company&apos;s servers and/or a Service Provider&apos;s server or it may
+        be simply stored on Your device.
       </p>
       <p>
         You can enable or disable access to this information at any time,
@@ -175,10 +176,10 @@ export default function PrivacyPolicyPage() {
         <li>
           <strong>To contact You:</strong> To contact You by email, telephone
           calls, SMS, or other equivalent forms of electronic communication,
-          such as a mobile application's push notifications regarding updates or
-          informative communications related to the functionalities, products or
-          contracted services, including the security updates, when necessary or
-          reasonable for their implementation.
+          such as a mobile application&apos;s push notifications regarding
+          updates or informative communications related to the functionalities,
+          products or contracted services, including the security updates, when
+          necessary or reasonable for their implementation.
         </li>
         <li>
           <strong>To provide You</strong> with news, special offers and general
@@ -262,12 +263,13 @@ export default function PrivacyPolicyPage() {
 
       <h3>Transfer of Your Personal Data</h3>
       <p>
-        Your information, including Personal Data, is processed at the Company's
-        operating offices and in any other places where the parties involved in
-        the processing are located. It means that this information may be
-        transferred to — and maintained on — computers located outside of Your
-        state, province, country or other governmental jurisdiction where the
-        data protection laws may differ than those from Your jurisdiction.
+        Your information, including Personal Data, is processed at the
+        Company&apos;s operating offices and in any other places where the
+        parties involved in the processing are located. It means that this
+        information may be transferred to — and maintained on — computers
+        located outside of Your state, province, country or other governmental
+        jurisdiction where the data protection laws may differ than those from
+        Your jurisdiction.
       </p>
       <p>
         Your consent to this Privacy Policy followed by Your submission of such
@@ -343,7 +345,7 @@ export default function PrivacyPolicyPage() {
         security.
       </p>
 
-      <h2>Children's Privacy</h2>
+      <h2>Children&apos;s Privacy</h2>
       <p>
         Our Service does not address anyone under the age of 13. We do not
         knowingly collect personally identifiable information from anyone under
@@ -356,16 +358,16 @@ export default function PrivacyPolicyPage() {
       <p>
         If We need to rely on consent as a legal basis for processing Your
         information and Your country requires consent from a parent, We may
-        require Your parent's consent before We collect and use that
+        require Your parent&apos;s consent before We collect and use that
         information.
       </p>
 
       <h2>Links to Other Websites</h2>
       <p>
         Our Service may contain links to other websites that are not operated by
-        Us. If You click on a third party link, You will be directed to that
-        third party's site. We strongly advise You to review the Privacy Policy
-        of every site You visit.
+        Us. If You click on a third party&apos;s link, You will be directed to
+        that third party&apos;s site. We strongly advise You to review the
+        Privacy Policy of every site You visit.
       </p>
       <p>
         We have no control over and assume no responsibility for the content,
@@ -379,8 +381,8 @@ export default function PrivacyPolicyPage() {
       </p>
       <p>
         We will let You know via email and/or a prominent notice on Our Service,
-        prior to the change becoming effective and update the "Last updated"
-        date at the top of this Privacy Policy.
+        prior to the change becoming effective and update the &quot;Last
+        updated&quot; date at the top of this Privacy Policy.
       </p>
       <p>
         You are advised to review this Privacy Policy periodically for any
