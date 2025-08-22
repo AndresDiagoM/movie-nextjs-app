@@ -9,6 +9,9 @@ async function POST(request) {
   const { searchParams } = new URL(request.url);
   const entryType = searchParams.get("type") || "MOVIE"; // Default to MOVIE if not specified
 
+  // Map frontend MediaType to Prisma MediaType
+  const prismaType = entryType === "TV" ? "SERIES" : "MOVIE";
+
   // console.log("[Movies] Adding entry to list", data, "Type:", entryType);
 
   try {
@@ -36,7 +39,7 @@ async function POST(request) {
           email: data.user.email,
         },
         tmdbId: data.show.id,
-        type: entryType,
+        type: prismaType,
       },
     });
 
@@ -58,7 +61,7 @@ async function POST(request) {
         },
         tmdbId: data.show.id,
         title: data.show.title || data.show.name, // Handle both movie titles and TV show names
-        type: entryType,
+        type: prismaType,
       },
     });
 
@@ -77,19 +80,35 @@ async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const email = searchParams.get("email");
+    const type = searchParams.get("type") || "MOVIE"; // Default to MOVIE for backward compatibility
 
-    const movies = await prisma.watchEntry.findMany({
+    // Map frontend MediaType to Prisma MediaType
+    const prismaType = type === "TV" ? "SERIES" : "MOVIE";
+
+    const entries = await prisma.watchEntry.findMany({
       where: {
         user: {
           email,
         },
-        type: "MOVIE",
+        type: prismaType,
       },
     });
 
-    let movieTmdbIds = movies.map((movie) => movie.tmdbId);
-    console.log("[API-Movies] Movies found", movieTmdbIds);
-    return NextResponse.json({ message: "Entries found.", movieTmdbIds });
+    let tmdbIds = entries.map((entry) => entry.tmdbId);
+
+    if (type === "TV") {
+      console.log("[API-Series] Series found", tmdbIds);
+      return NextResponse.json({
+        message: "Entries found.",
+        seriesTmdbIds: tmdbIds,
+      });
+    } else {
+      console.log("[API-Movies] Movies found", tmdbIds);
+      return NextResponse.json({
+        message: "Entries found.",
+        movieTmdbIds: tmdbIds,
+      });
+    }
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "An error occurred" }, { status: 500 });

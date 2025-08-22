@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FaBars, FaSignInAlt, FaTimes } from "react-icons/fa";
 import SearchBar from "./SearchBar";
@@ -11,6 +12,12 @@ const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const { data: session } = useSession();
+  const pathname = usePathname();
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (isOpen) {
@@ -31,7 +38,7 @@ const MobileMenu = () => {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-50 p-2 text-white hover:text-gray-300 transition-colors"
+        className="relative z-[99999] p-2 text-white hover:text-gray-300 transition-colors"
         aria-label="Toggle menu"
       >
         {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -39,7 +46,7 @@ const MobileMenu = () => {
 
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-[99997] ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
@@ -47,7 +54,7 @@ const MobileMenu = () => {
 
       {/* Menu Panel */}
       <div
-        className={`fixed inset-y-0 right-0 w-[80%] max-w-sm bg-black/95 shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 right-0 w-[80%] max-w-sm bg-black/95 shadow-lg transform transition-transform duration-300 ease-in-out z-[99998] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

@@ -68,7 +68,7 @@ export const ShowsContainer = ({
   };
 
   return (
-    <div className="pt-0 background-transparent -mt-20 z-20 relative">
+    <div className="pt-0 background-transparent -mt-20 z-10 lg:z-20 relative">
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-black z-0" />
       <h1 className="text-2xl font-bold mb-4 relative z-10">{title}</h1>
 
