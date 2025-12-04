@@ -20,7 +20,6 @@ npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 
 This will install the latest version of Tailwind CSS, PostCSS, and Autoprefixer.
 
-
 ## Technologies used in this project
 
 - ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) Next.js
@@ -31,7 +30,6 @@ This will install the latest version of Tailwind CSS, PostCSS, and Autoprefixer.
 - ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) Supabase
 - ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white) PostgreSQL
 - ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) Vercel
-
 
 ## Folder Structure
 
@@ -76,7 +74,6 @@ A scalable folder structure for a Next.js project should be organized in a way t
 |-- tsconfig.json
 ```
 
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -92,7 +89,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
 ## Streaming services used in this project
 
 - Vidsrc (https://vidsrc.cc/)
@@ -106,19 +102,93 @@ https://vidsrc.cc/v2/embed/type/season/episode
 https://vidsrc.cc/v2/embed/tv/tt0944947/1/5
 ```
 
-
 ## Wiki pages
 
 For detailed information on authentication and using NextAuth.js, please refer to the [Wiki](https://github.com/AndresDiagoM/movie-nextjs-app/wiki) pages.
 
-
-
-<!-- 
+<!--
     VSCODE PROBLEM WITH TYPESCRIPT AND JAVASCRIPT, go to settings and search typescript.disableAutomaticTypeAcquisition and check
 
  -->
 
-
-## DeepWiki 
+## DeepWiki
 
 See the project documentation at [DeepWiki](https://deepwiki.com/AndresDiagoM/movie-nextjs-app/1-overview) for more information on how to use the project and its features.
+
+## Code Quality & Formatting (Biome)
+
+This project uses [Biome](https://biomejs.dev) for fast formatting, linting, and import organizing.
+
+### Install (if not already installed globally)
+
+Biome is a dev dependency when you first add it. If you haven't yet:
+
+```bash
+pnpm add -D @biomejs/biome
+```
+
+### VS Code Extension
+
+1. Install the "Biome" extension (you already did this).
+2. Open the command palette and run: `Biome: Restart Language Server` after changing `biome.json`.
+3. Disable overlapping formatters to avoid conflicts:
+   - Settings > search "Format On Save" keep enabled.
+   - Set `"editor.defaultFormatter": "biomejs.biome"` for `typescript`, `typescriptreact`, `javascript`, `javascriptreact`.
+   - Optionally disable ESLint's format capability (keep it only for rules not yet covered by Biome).
+
+### Scripts
+
+```bash
+pnpm run biome:check   # Show diagnostics (lint + format issues)
+pnpm run biome:fix     # Auto-fix + format everything
+pnpm run lint:all      # Run Biome check then ESLint (framework/react specific rules)
+```
+
+### Recommended Workflow
+
+- Rely on Biome for formatting & basic lint rules.
+- Keep ESLint for Next.js / React specific rules not yet covered by Biome (e.g. `react-hooks/exhaustive-deps`).
+- Gradually migrate rules: if Biome covers a rule, remove its ESLint counterpart to speed up dev.
+
+### Pre-commit (Optional)
+
+Add a simple pre-commit hook using `simple-git-hooks` or `husky` later:
+
+```bash
+pnpm add -D simple-git-hooks
+```
+
+In `package.json`:
+
+```jsonc
+"simple-git-hooks": {
+    "pre-commit": "pnpm biome:fix"
+}
+```
+
+Then enable:
+
+```bash
+pnpm dlx simple-git-hooks
+```
+
+### Config Overview
+
+`biome.json` currently enforces:
+
+- Line width: 100
+- 2-space indentation
+- Single quotes (JS/TS), double quotes for JSX
+- Trailing commas where valid
+- Organizes imports automatically
+
+Adjust any of these in `biome.json` as needed.
+
+### Disable a Rule Inline
+
+```ts
+// biome-ignore lint/suspicious/noExplicitAny: library typings require any here
+function example(param: any) {}
+```
+
+Let me know if you want a full ESLint → Biome migration plan or to add a pre-commit hook automatically.
