@@ -1,49 +1,50 @@
 {
-	"editor.wordWrap": "on",
-	"rest-client.environmentVariables": {
-		"$shared": {
-			"api-key": "",
-			"accessToken": "",
-			"refreshToken": "",
-			"tmdb_host": "https://api.themoviedb.org",
-			"tmdb_token": ""
-		},
-		"local": {
-			"hostname": "http://localhost:3000/api"
-		},
-		"prod": {
-			"hostname": "https://api.example.com"
-		},
-		"aws-dev": {
-			"hostname": "https://0sjzi9qxzd.execute-api.us-east-1.amazonaws.com/dev/v1"
-		}
-	},
-	"explorer.fileNesting.patterns": {
-		"next.config.ts": "tsconfig.*.json, tsconfig.json, postcss.config.mjs, tailwind.config.ts",
-		"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
-		".gitignore": ".prettierrc,.editorconfig, .prettierignore, .eslintignore, .eslintrc.*, .env, .env.*, next-env.d.ts",
-		"README.md": "README.serverless.md, serverless.yml, secrets_manager.yml"
-	},
-	"cSpell.words": [
-		"apparence",
-		"facebook",
-		"flix",
-		"Flix",
-		"fontawesome",
-		"fortawesome",
-		"geist",
-		"imdb",
-		"instagram",
-		"linkedin",
-		"modestbranding",
-		"nextjs",
-		"rgba",
-		"runtimes",
-		"tmdb",
-		"vidsrc",
-		"VIDSRC",
-		"xxlarge",
-		"YOUTUBE"
-	],
-	"typescript.tsdk": "node_modules\\typescript\\lib"
+  "editor.wordWrap": "on",
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "api-key": "",
+      "accessToken": "",
+      "refreshToken": "",
+      "tmdb_host": "https://api.themoviedb.org",
+      "tmdb_token": ""
+    },
+    "local": {
+      "hostname": "http://localhost:3000/api"
+    },
+    "prod": {
+      "hostname": "https://api.example.com"
+    },
+    "aws-dev": {
+      "hostname": "https://0sjzi9qxzd.execute-api.us-east-1.amazonaws.com/dev/v1"
+    }
+  },
+  "explorer.fileNesting.patterns": {
+    "next.config.ts": "tsconfig.*.json, tsconfig.json, postcss.config.mjs, tailwind.config.ts",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+    ".gitignore": ".prettierrc,.editorconfig, .prettierignore, .eslintignore, .eslintrc.*, .env, .env.*, next-env.d.ts",
+    "README.md": "README.serverless.md, serverless.yml, secrets_manager.yml"
+  },
+  "cSpell.words": [
+    "apparence",
+    "facebook",
+    "flix",
+    "Flix",
+    "fontawesome",
+    "fortawesome",
+    "geist",
+    "imdb",
+    "instagram",
+    "linkedin",
+    "modestbranding",
+    "nextjs",
+    "rgba",
+    "runtimes",
+    "tmdb",
+    "vidsrc",
+    "VIDSRC",
+    "watchlist",
+    "xxlarge",
+    "YOUTUBE"
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

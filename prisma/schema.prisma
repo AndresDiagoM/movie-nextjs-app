@@ -31,6 +31,7 @@ model User {
   isActive    Boolean  @default(true)
   lastLogin   DateTime?
   watchEntries WatchEntry[]
+  pushSubscriptions PushSubscription[]
 }
 
 enum Role {
@@ -54,4 +55,22 @@ model WatchEntry {
 enum MediaType {
   MOVIE
   SERIES
+}
+
+model PushSubscription {
+  id          String   @id @default(cuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  endpoint    String   @unique
+  p256dh      String
+  auth        String
+  // Notification preferences
+  enabled     Boolean  @default(true)
+  newEpisodes Boolean  @default(true)
+  watchlistUpdates Boolean @default(true)
+  recommendations  Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
 }

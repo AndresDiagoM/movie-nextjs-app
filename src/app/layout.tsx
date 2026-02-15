@@ -3,6 +3,7 @@
 import AuthProvider from "@/components/providers/SessionProvider";
 import { Footer } from "app/components/shared/Footer";
 import { Header } from "app/components/shared/Header";
+import { NotificationPrompt } from "app/components/shared/NotificationPrompt";
 import { PWAInstallPrompt } from "app/components/shared/PWAInstallPrompt";
 import localFont from "next/font/local";
 import { usePathname } from "next/navigation";
@@ -122,6 +123,9 @@ export default function RootLayout({
 
           {/* PWA Install Prompt */}
           <PWAInstallPrompt />
+
+          {/* Notification Prompt */}
+          <NotificationPrompt />
 
           {/* Toast notifications */}
           <Toaster

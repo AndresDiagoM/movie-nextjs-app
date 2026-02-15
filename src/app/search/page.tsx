@@ -7,10 +7,12 @@ import { MediaType } from "app/types";
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Skeleton } from "app/components/shared/Skeleton";
 import ShowsService from "app/services/showService";
+import { useSearchParams } from "next/navigation";
 
 const SearchPage = () => {
 	const searchStore = useSearchStore();
 	const { shows, loading, query } = useSearchStore();
+	const searchParams = useSearchParams();
 	const [filters, setFilters] = useState({
 		genre: "",
 		year: "",
@@ -18,6 +20,17 @@ const SearchPage = () => {
 		title: "",
 		type: "",
 	});
+
+	// Handle URL query parameter (from share target or direct links)
+	useEffect(() => {
+		const queryFromUrl = searchParams.get("q");
+		if (queryFromUrl) {
+			setFilters((prev) => ({
+				...prev,
+				title: queryFromUrl,
+			}));
+		}
+	}, [searchParams]);
 
 	const handleFilterChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const { name, value } = e.target;
@@ -59,6 +72,15 @@ const SearchPage = () => {
 	return (
 		<div className="pt-[70px] min-h-screen">
 			<div className="p-8 text-white text-center space-y-8">
+				{/* Share Target Success Message */}
+				{searchParams.get("source") === "share" && (
+					<div className="bg-green-900/30 border border-green-600 rounded-lg p-4 mb-4">
+						<p className="text-green-400">
+							✓ Content shared successfully! Searching for: &quot;{filters.title}&quot;
+						</p>
+					</div>
+				)}
+
 				{/* Filters Container */}
 				<div className="flex flex-col sm:flex-row sm:flex-wrap justify-center">
 					<select

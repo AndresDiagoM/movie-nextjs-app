@@ -2,7 +2,7 @@
   "name": "Movie NextJS App",
   "short_name": "MovieApp",
   "description": "Your favorite movies and series streaming app",
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
@@ -23,5 +23,99 @@
       "type": "image/svg+xml",
       "purpose": "maskable any"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "description": "Search for movies and series",
+      "url": "/search?source=shortcut",
+      "icons": [
+        {
+          "src": "/icon-192x192.svg",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Movies",
+      "short_name": "Movies",
+      "description": "Browse all movies",
+      "url": "/movies?source=shortcut",
+      "icons": [
+        {
+          "src": "/icon-192x192.svg",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Series",
+      "short_name": "Series",
+      "description": "Browse all series",
+      "url": "/series?source=shortcut",
+      "icons": [
+        {
+          "src": "/icon-192x192.svg",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Continue Watching",
+      "short_name": "Continue",
+      "description": "Continue watching your shows",
+      "url": "/home?source=shortcut#continue-watching",
+      "icons": [
+        {
+          "src": "/icon-192x192.svg",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home-screenshot.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Home screen showing trending movies and series"
+    },
+    {
+      "src": "/screenshots/player-screenshot.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Video player with playback controls"
+    },
+    {
+      "src": "/screenshots/search-screenshot.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Search interface for finding content"
+    },
+    {
+      "src": "/screenshots/home-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop view of the home screen"
+    }
+  ],
+  "share_target": {
+    "action": "/api/share",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }

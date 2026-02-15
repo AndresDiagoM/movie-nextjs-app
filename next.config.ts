@@ -34,4 +34,32 @@ export default withPWA({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development", // Disable PWA in development
+  // Add custom service worker for push notifications
+  sw: "sw.js",
+  swSrc: "public/sw-custom.js",
+  // Workbox options
+  runtimeCaching: [
+    {
+      urlPattern: /^https:\/\/api\.themoviedb\.org\/.*/i,
+      handler: "NetworkFirst",
+      options: {
+        cacheName: "tmdb-api-cache",
+        expiration: {
+          maxEntries: 100,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        },
+      },
+    },
+    {
+      urlPattern: /^https:\/\/image\.tmdb\.org\/.*/i,
+      handler: "CacheFirst",
+      options: {
+        cacheName: "tmdb-images-cache",
+        expiration: {
+          maxEntries: 200,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        },
+      },
+    },
+  ],
 })(nextConfig);
