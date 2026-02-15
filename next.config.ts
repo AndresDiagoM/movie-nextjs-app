@@ -36,8 +36,10 @@ export default withPWA({
   disable: process.env.NODE_ENV === "development", // Disable PWA in development
   // Add custom service worker for push notifications
   sw: "sw.js",
-  swSrc: "public/sw-custom.js",
+  // swSrc: "public/sw-custom.js",
   // Workbox options
+  // Workbox options: using a custom service worker via `swSrc`.
+  // Define runtime caching strategies inside `public/sw-custom.js` when using InjectManifest.
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/api\.themoviedb\.org\/.*/i,
@@ -62,4 +64,4 @@ export default withPWA({
       },
     },
   ],
-})(nextConfig);
+} as any)(nextConfig);
