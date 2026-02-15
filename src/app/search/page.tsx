@@ -42,13 +42,26 @@ const SearchContent = () => {
     });
   };
 
+  // Debounce the filters to avoid excessive API calls
+  const [debouncedFilters, setDebouncedFilters] = useState(filters);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedFilters(filters);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [filters]);
+
   useEffect(() => {
     const fetchShows = async () => {
       const nonEmptyFilters = Object.fromEntries(
-        Object.entries(filters).filter(([, value]) => value !== ""),
+        Object.entries(debouncedFilters).filter(([, value]) => value !== ""),
       );
       const data = await ShowsService.searchShows2({
-        type: filters.type,
+        type: debouncedFilters.type,
         filters: nonEmptyFilters,
       });
       searchStore.setShows(data.results);
@@ -57,23 +70,23 @@ const SearchContent = () => {
     };
 
     fetchShows();
-  }, [filters.title, filters.genre, filters.year, filters.actor]);
+  }, [debouncedFilters]);
 
   useEffect(() => {
     const fetchGenres = async () => {
-      const data = await ShowsService.fetchGenres(filters?.type as MediaType);
+      const data = await ShowsService.fetchGenres(debouncedFilters?.type as MediaType);
       console.log("[SearchPage] Genres: ", data.genres.length);
       searchStore.setGenres(data.genres);
     };
 
     if (
-      filters.type !== "" &&
-      filters.type !== "multi" &&
-      filters.type !== undefined
+      debouncedFilters.type !== "" &&
+      debouncedFilters.type !== "multi" &&
+      debouncedFilters.type !== undefined
     ) {
       fetchGenres();
     }
-  }, [filters.type]);
+  }, [debouncedFilters.type]);
 
   return (
     <div className="pt-[70px] min-h-screen">

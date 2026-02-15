@@ -22,22 +22,25 @@ const SearchBar = forwardRef<SearchBarRef, object>((props, ref) => {
     },
   }));
 
-  const handleSearchInput = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.target.value;
     searchStore.setQuery(searchValue);
-
-    if (searchValue.length > 2) {
-      searchStore.setLoading(true);
-      const data = await ShowsService.searchShows(searchValue);
-      searchStore.setShows(data.results);
-      searchStore.setLoading(false);
-
-      // Redirect to search page after getting results
-      router.push("/search");
-    }
   };
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(async () => {
+      if (searchStore.query.length > 2) {
+        searchStore.setLoading(true);
+        const data = await ShowsService.searchShows(searchStore.query);
+        searchStore.setShows(data.results);
+        searchStore.setLoading(false);
+        router.push("/search");
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchStore.query]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

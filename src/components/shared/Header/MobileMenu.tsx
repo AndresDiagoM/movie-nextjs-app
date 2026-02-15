@@ -16,7 +16,9 @@ const MobileMenu = () => {
 
   // Close menu when route changes
   useEffect(() => {
-    setIsOpen(false);
+    if (pathname !== "/search") {
+      setIsOpen(false);
+    }
   }, [pathname]);
 
   useEffect(() => {
@@ -46,17 +48,15 @@ const MobileMenu = () => {
 
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-[99997] ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-[99997] ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Menu Panel */}
       <div
-        className={`fixed inset-y-0 right-0 w-[80%] max-w-sm bg-black/95 shadow-lg transform transition-transform duration-300 ease-in-out z-[99998] ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-y-0 right-0 w-[80%] max-w-sm bg-black/95 shadow-lg transform transition-transform duration-300 ease-in-out z-[99998] ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex flex-col h-full pt-20 pb-6 px-6">
           <div className="flex-1 space-y-6">

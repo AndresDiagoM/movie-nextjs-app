@@ -10,7 +10,8 @@ async function POST(request) {
   const entryType = searchParams.get("type") || "MOVIE"; // Default to MOVIE if not specified
 
   // Map frontend MediaType to Prisma MediaType
-  const prismaType = entryType === "TV" ? "SERIES" : "MOVIE";
+  const prismaType =
+    entryType === "TV" || entryType === "SERIES" ? "SERIES" : "MOVIE";
 
   // console.log("[Movies] Adding entry to list", data, "Type:", entryType);
 
@@ -85,7 +86,7 @@ async function GET(request) {
     const limit = parseInt(searchParams.get("limit") || "12");
 
     // Map frontend MediaType to Prisma MediaType
-    const prismaType = type === "TV" ? "SERIES" : "MOVIE";
+    const prismaType = type === "TV" || type === "SERIES" ? "SERIES" : "MOVIE";
 
     // Calculate skip value for pagination
     const skip = (page - 1) * limit;
@@ -118,7 +119,7 @@ async function GET(request) {
     const totalPages = Math.ceil(totalCount / limit);
     const hasMore = page < totalPages;
 
-    if (type === "TV") {
+    if (type === "TV" || type === "SERIES") {
       console.log(
         `[API-Series] Page ${page}/${totalPages} - Series found: ${tmdbIds.length}`,
       );
