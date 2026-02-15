@@ -1,6 +1,6 @@
 import { MovieHero } from "app/components/shared/ShowHero";
 import { ShowsContainer } from "app/components/shared/ShowsContainer";
-import { WatchedMoviesSection } from "app/components/shared/WatchedMoviesSection/WatchedMoviesSection";
+import { WatchedShowsSection } from "app/components/shared/WatchedShowsSection";
 import ShowsService from "app/services/showService";
 import { MediaType } from "app/types";
 import { getRandomMovieFromList } from "app/utils";
@@ -32,7 +32,7 @@ const Movies: React.FC = async () => {
 
       <div className="relative pt-0 z-20 p-8 text-white text-center flex-1 space-y-8">
         {/* Watched Movies - Client Component */}
-        <WatchedMoviesSection />
+        <WatchedShowsSection mediaType={MediaType.MOVIE} />
 
         {/* Latest Movies */}
         <ShowsContainer

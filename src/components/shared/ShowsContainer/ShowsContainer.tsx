@@ -3,7 +3,7 @@
 import { ShowModal } from "app/components/shared/ShowsModal";
 import { MediaType, Show } from "app/types";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -13,12 +13,17 @@ export const ShowsContainer = ({
   shows,
   title,
   mediaType,
+  onLoadMoreAction,
+  isLoadingMore = false,
 }: {
   shows: Show[];
   title: string;
   mediaType: MediaType;
+  onLoadMoreAction?: () => void;
+  isLoadingMore?: boolean;
 }) => {
   const [selectedMovie, setSelectedMovie] = useState<Show | null>(null);
+  const hasTriggeredLoadMore = useRef(false);
 
   useEffect(() => {
     if (selectedMovie) {
@@ -28,21 +33,47 @@ export const ShowsContainer = ({
     }
   }, [selectedMovie]);
 
+  // Reset the loadMore trigger when shows length changes (new items loaded)
+  useEffect(() => {
+    hasTriggeredLoadMore.current = false;
+  }, [shows.length]);
+
+  const handleAfterChange = (currentSlide: number) => {
+    if (!onLoadMoreAction || hasTriggeredLoadMore.current || isLoadingMore)
+      return;
+
+    // Calculate how many slides from the end we are
+    // Considering the number of slides shown at once
+    const slidesToShow =
+      window.innerWidth > 1024 ? 6 : window.innerWidth > 600 ? 3 : 2;
+    const slidesFromEnd = shows.length - currentSlide - slidesToShow;
+
+    // Trigger load more when we're 3 slides away from the end
+    if (slidesFromEnd <= 3) {
+      console.log(
+        `[ShowsContainer] Near end, loading more... (slide ${currentSlide}/${shows.length})`,
+      );
+      hasTriggeredLoadMore.current = true;
+      onLoadMoreAction();
+    }
+  };
+
   const settings = {
     dots: shows.length > 1,
-    infinite: shows.length > 1, // Only enable infinite scroll if more than 1 item
+    infinite: false, // Disable infinite scroll to detect end properly
     speed: 500,
     slidesToShow: Math.min(6, shows.length), // Don't show more slides than available items
     slidesToScroll: Math.min(6, shows.length),
     prevArrow: shows.length > 1 ? <CustomPrevArrow /> : <></>, // Hide arrows if only 1 item
     nextArrow: shows.length > 1 ? <CustomNextArrow /> : <></>,
+    afterChange: handleAfterChange,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: Math.min(3, shows.length),
           slidesToScroll: Math.min(3, shows.length),
-          infinite: shows.length > 3,
+          infinite: false,
           dots: shows.length > 1,
         },
       },
@@ -51,16 +82,16 @@ export const ShowsContainer = ({
         settings: {
           slidesToShow: Math.min(2, shows.length),
           slidesToScroll: Math.min(2, shows.length),
-          infinite: shows.length > 2,
+          infinite: false,
           dots: shows.length > 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: false, // Never infinite on mobile with 1 slide
+          slidesToShow: Math.min(2, shows.length),
+          slidesToScroll: Math.min(2, shows.length),
+          infinite: false,
           dots: shows.length > 1,
         },
       },
@@ -116,9 +147,14 @@ export const ShowsContainer = ({
                         {movie?.overview}
                       </div>
                     </div>
-                  )
+                  ),
               )}
           </Slider>
+          {isLoadingMore && (
+            <div className="text-center mt-4">
+              <span className="text-gray-400">Cargando más...</span>
+            </div>
+          )}
         </div>
       )}
 

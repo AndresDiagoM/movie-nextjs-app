@@ -47,7 +47,7 @@ async function POST(request) {
       console.log(`[API-SHOWS] ${entryType} already exists`);
       return NextResponse.json(
         { message: `${entryType} already exists` },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -81,11 +81,17 @@ async function GET(request) {
     const { searchParams } = new URL(request.url);
     const email = searchParams.get("email");
     const type = searchParams.get("type") || "MOVIE"; // Default to MOVIE for backward compatibility
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "12");
 
     // Map frontend MediaType to Prisma MediaType
     const prismaType = type === "TV" ? "SERIES" : "MOVIE";
 
-    const entries = await prisma.watchEntry.findMany({
+    // Calculate skip value for pagination
+    const skip = (page - 1) * limit;
+
+    // Get total count for pagination metadata
+    const totalCount = await prisma.watchEntry.count({
       where: {
         user: {
           email,
@@ -94,19 +100,53 @@ async function GET(request) {
       },
     });
 
+    const entries = await prisma.watchEntry.findMany({
+      where: {
+        user: {
+          email,
+        },
+        type: prismaType,
+      },
+      skip,
+      take: limit,
+      orderBy: {
+        createdAt: "desc", // Most recent first
+      },
+    });
+
     let tmdbIds = entries.map((entry) => entry.tmdbId);
+    const totalPages = Math.ceil(totalCount / limit);
+    const hasMore = page < totalPages;
 
     if (type === "TV") {
-      console.log("[API-Series] Series found", tmdbIds);
+      console.log(
+        `[API-Series] Page ${page}/${totalPages} - Series found: ${tmdbIds.length}`,
+      );
       return NextResponse.json({
         message: "Entries found.",
         seriesTmdbIds: tmdbIds,
+        pagination: {
+          page,
+          limit,
+          totalCount,
+          totalPages,
+          hasMore,
+        },
       });
     } else {
-      console.log("[API-Movies] Movies found", tmdbIds);
+      console.log(
+        `[API-Movies] Page ${page}/${totalPages} - Movies found: ${tmdbIds.length}`,
+      );
       return NextResponse.json({
         message: "Entries found.",
         movieTmdbIds: tmdbIds,
+        pagination: {
+          page,
+          limit,
+          totalCount,
+          totalPages,
+          hasMore,
+        },
       });
     }
   } catch (error) {
