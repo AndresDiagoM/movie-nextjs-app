@@ -22,12 +22,23 @@
 
 .closeButton
     position: absolute
-    top: 10px
-    right: 25px
-    background-color: transparent
-    border: none
+    top: 12px
+    right: 12px
+    background-color: rgba(0, 0, 0, 0.75)
+    border: 1px solid rgba(255, 255, 255, 0.6)
+    border-radius: 50%
+    width: 36px
+    height: 36px
+    display: flex
+    align-items: center
+    justify-content: center
     cursor: pointer
-    z-index: 30 
+    z-index: 10000
+    color: white
+    font-size: 0.85rem
+    font-weight: bold
+    &:hover
+        background-color: rgba(0, 0, 0, 0.95)
 
 .scrollContainer
     overflow-y: auto
@@ -56,6 +67,7 @@
     background-position: center
     position: relative
     border-radius: 10px
+    overflow: hidden
 
 .reactPlayer
     position: absolute

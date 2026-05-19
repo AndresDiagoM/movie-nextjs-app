@@ -1,0 +1,378 @@
+{
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\next-env.d.ts": {
+    "mtime": 1764880931.0591464,
+    "hash": "87b8923c5d888ccf9b510b04993a75a9"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\next.config.ts": {
+    "mtime": 1771120200.3810835,
+    "hash": "07e5b85fc93fa456afd348b7902056e8"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\postcss.config.js": {
+    "mtime": 1764881182.9601524,
+    "hash": "e5f291ae7dc8b9e462f4bc232849464c"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\tailwind.config.ts": {
+    "mtime": 1729998674.79211,
+    "hash": "f7606184a1b7420ae2ecb9470300dc80"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\prisma\\migrations\\20250116005440_init\\migration.sql": {
+    "mtime": 1764881182.9601524,
+    "hash": "6988b279d1c9dd19e6b4a951a0865f34"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\prisma\\migrations\\20250118030514_user\\migration.sql": {
+    "mtime": 1764881182.9601524,
+    "hash": "9c4278c997a69109a051e0576ec5012b"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\prisma\\migrations\\20250208010147_watch_entry\\migration.sql": {
+    "mtime": 1764881182.9601524,
+    "hash": "ddc0072d3b73503aa5ddb7687097cc3d"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\prisma\\migrations\\20250208012307_watch_entry\\migration.sql": {
+    "mtime": 1764881182.9601524,
+    "hash": "292dc0ff12ad3a1433aa5cd110d3a0da"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\sw-custom.js": {
+    "mtime": 1771118115.7199082,
+    "hash": "9b62dea3fd221663c1a13442331b67be"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\sw.js": {
+    "mtime": 1771120581.7816832,
+    "hash": "8d40fc3a8e0e97bf33147683cabb14be"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\workbox-ee5ddb69.js": {
+    "mtime": 1771120581.7770393,
+    "hash": "7e42de332453c1941c95c05ff62b41e9"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\env.mjs": {
+    "mtime": 1734916855.8166,
+    "hash": "92e0b7f53fe5513d2f0a016b73496776"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\layout-server.tsx": {
+    "mtime": 1764881182.9753273,
+    "hash": "c53823f3e88cb48cf7054eb2f6f0f7f8"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\layout.tsx": {
+    "mtime": 1771119091.782289,
+    "hash": "efa2bdabfc3d270758dca6da05049c2b"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\page.tsx": {
+    "mtime": 1734915862.6752896,
+    "hash": "b65133fff5998ceee657e202012105f9"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\auth\\register\\route.ts": {
+    "mtime": 1764881182.9753273,
+    "hash": "9fd1cf73586a5624575350e19c2b6a63"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\auth\\[...nextauth]\\route.ts": {
+    "mtime": 1764881182.9753273,
+    "hash": "379544a0b5a43aaba6a018bbb60703e7"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\cron\\check-new-episodes\\route.ts": {
+    "mtime": 1771119395.9956427,
+    "hash": "4270b66ea70dba3e688746fb9988d52c"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\notifications\\preferences\\route.ts": {
+    "mtime": 1771118241.8678057,
+    "hash": "51cc9a23b545ad09791c43092bb52036"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\notifications\\send\\route.ts": {
+    "mtime": 1771118254.6502252,
+    "hash": "1e5984021078035da40858a43b4771fe"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\notifications\\subscribe\\route.ts": {
+    "mtime": 1771118231.8273616,
+    "hash": "89861ce4799634e90f1ec67557c3703d"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\notifications\\unsubscribe\\route.ts": {
+    "mtime": 1771118235.1071095,
+    "hash": "27c5409aaca7e914f85fb91f13aa32ee"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\share\\route.ts": {
+    "mtime": 1771117848.2289486,
+    "hash": "3f89e5719038b5d1887f97b6b63a5ff3"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\api\\shows\\route.js": {
+    "mtime": 1771122093.9985852,
+    "hash": "460a835a21168cc6c07bea8ea91c4e5f"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\auth\\error\\page.tsx": {
+    "mtime": 1764881182.9753273,
+    "hash": "2bb3b83da913028fe8939b4351fbafdf"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\auth\\register\\page.tsx": {
+    "mtime": 1764881182.9753273,
+    "hash": "eb166649d7a2b20656b77d68e2914e75"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\auth\\signin\\page.tsx": {
+    "mtime": 1764881182.9753273,
+    "hash": "37f90e4cc45c4ec0e7fbb3c8378acabf"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\home\\layout.tsx": {
+    "mtime": 1731792628.2324016,
+    "hash": "00cbee3928c5ceed3ec0b0b50c5c18ec"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\home\\page.tsx": {
+    "mtime": 1764881182.9753273,
+    "hash": "b9a758d8baeedb69cb38e01530b917fa"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\movies\\page.tsx": {
+    "mtime": 1771115980.50413,
+    "hash": "4cd0e0760afec1d4e537f81db1069740"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\movies\\[...id]\\layout.tsx": {
+    "mtime": 1764881182.9753273,
+    "hash": "9d740adf2311a26e904d265322a7e771"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\movies\\[...id]\\page.tsx": {
+    "mtime": 1764881182.9862092,
+    "hash": "c1d849fced9dcca9b4055ddd4ec60aee"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\privacy-policy\\page.tsx": {
+    "mtime": 1764881182.9875402,
+    "hash": "132387e79865288db88c87f35954b811"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\search\\page.tsx": {
+    "mtime": 1771121065.4751048,
+    "hash": "e0db7af7c6344aac5056c13902ad7743"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\series\\page.tsx": {
+    "mtime": 1771115980.508144,
+    "hash": "39bbe1b948fdb299a5a0279cc505e853"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\series\\[...id]\\layout.tsx": {
+    "mtime": 1764881182.9875402,
+    "hash": "2d4f4e061bfd2618e07e856dce82d0bf"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\app\\series\\[...id]\\page.tsx": {
+    "mtime": 1764881182.9875402,
+    "hash": "c3e84c27f80f22129aa7800e11d13738"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\providers\\ServerSession.tsx": {
+    "mtime": 1764881182.9875402,
+    "hash": "875a6be0c083ded00ec683988eb29fa4"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\providers\\SessionProvider.tsx": {
+    "mtime": 1764881182.9875402,
+    "hash": "2ebef2ce6f8fb169ef694be80fd1e376"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Footer\\Footer.tsx": {
+    "mtime": 1764881182.9875402,
+    "hash": "aef0865c27495544610bd1892f3e0b02"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Footer\\index.ts": {
+    "mtime": 1730344170.2238019,
+    "hash": "8911c518fbf9efae716fe683aa50b5cb"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Header\\Header.tsx": {
+    "mtime": 1764881188.9283476,
+    "hash": "2e1c77515648d13e9f160a49e149aa40"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Header\\index.ts": {
+    "mtime": 1730344449.3194816,
+    "hash": "999bca48425d1e77b103da66c6258387"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Header\\MobileMenu.tsx": {
+    "mtime": 1771121482.7920976,
+    "hash": "b6feb05cff7f0fa43f2a89fdffddecb8"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Header\\SearchBar.tsx": {
+    "mtime": 1771121492.2636387,
+    "hash": "af2260799768eb19c3a69d533f61197a"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Header\\UserMenu.tsx": {
+    "mtime": 1764881182.9966176,
+    "hash": "2390ce3e4224b4bf1689c198bd8813c9"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\NotificationPrompt\\index.ts": {
+    "mtime": 1771118177.1987834,
+    "hash": "1e188081361878d4806769932f05d746"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\NotificationPrompt\\NotificationPrompt.tsx": {
+    "mtime": 1771118173.8283482,
+    "hash": "70457fc5dd6970ef8f9fe82c322552a0"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\NotificationSettings\\index.ts": {
+    "mtime": 1771118207.2580152,
+    "hash": "d1a2fc0cff23817b1326fb3f5981ff52"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\NotificationSettings\\NotificationSettings.tsx": {
+    "mtime": 1771118203.1321826,
+    "hash": "e08931a69f30cc3da9933c194bdf6bdb"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\PWAInstallPrompt\\index.ts": {
+    "mtime": 1764881182.9966176,
+    "hash": "8a90e22c51f070f19581356796f2e23e"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\PWAInstallPrompt\\PWAInstallPrompt.tsx": {
+    "mtime": 1764881182.9966176,
+    "hash": "61d41b3b2dcb467f2c0a5a31b5d24e2d"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\ShowHero\\index.ts": {
+    "mtime": 1736207317.9161584,
+    "hash": "cf8f25fb5b8c751cfc129e88f3372201"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\ShowHero\\MovieHero.tsx": {
+    "mtime": 1764881182.9966176,
+    "hash": "3cebd3ba2dd5259e7fc270ccc4a88ecd"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\ShowsContainer\\CustomArrows.tsx": {
+    "mtime": 1731819297.8023968,
+    "hash": "b5ab4a22e9f211e5dc812d617096b080"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\ShowsContainer\\index.ts": {
+    "mtime": 1731781749.840584,
+    "hash": "274e4fbd94bcaa27200f2c0ec972cf78"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\ShowsContainer\\ShowsContainer.tsx": {
+    "mtime": 1771115980.620453,
+    "hash": "481b8012bce19a4861c6bd02dc3d413b"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\ShowsModal\\index.ts": {
+    "mtime": 1731797249.3724217,
+    "hash": "1e623dea49d23a07bcf0684ffb0a57f6"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\ShowsModal\\ShowsModal.tsx": {
+    "mtime": 1764881183.0040133,
+    "hash": "ad74ed420fb7b945cb57e1cb13ffe91d"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Skeleton\\index.ts": {
+    "mtime": 1764881183.006012,
+    "hash": "19f5a721efc664cf387ec23d91ccbc19"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\Skeleton\\Skeleton.tsx": {
+    "mtime": 1764881183.0050116,
+    "hash": "ace5aec059b2b8e7ba3164c47203373a"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\VideoPlayer\\index.ts": {
+    "mtime": 1732418116.6114,
+    "hash": "80fcf84f91fbb58b618534ecdfd65251"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\VideoPlayer\\VideoPlayer.tsx": {
+    "mtime": 1764881183.007012,
+    "hash": "2d63bcb7e4ea42ccc899a2c1ee3bc430"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\WatchedMoviesSection\\WatchedMoviesSection.tsx": {
+    "mtime": 1771115980.6184447,
+    "hash": "3320da829046b3da17a44816e1cc601d"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\WatchedSeriesSection\\index.ts": {
+    "mtime": 1764881183.009012,
+    "hash": "abe103bf921872be0472b61a890e6d60"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\WatchedSeriesSection\\WatchedSeriesSection.tsx": {
+    "mtime": 1771115980.620453,
+    "hash": "7a46bd7235f2f59b384b7ef4c64e7581"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\WatchedShowsSection\\index.ts": {
+    "mtime": 1771115980.856907,
+    "hash": "ef7e2b5946cc3a535039078a12d44175"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\components\\shared\\WatchedShowsSection\\WatchedShowsSection.tsx": {
+    "mtime": 1771115980.856907,
+    "hash": "62a94864032ea5c89bc9af035d684699"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\hooks\\useIndexedDB.ts": {
+    "mtime": 1771118085.0622106,
+    "hash": "6b7c7d53d23396719f296aed070f5d4d"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\hooks\\useWindowSize.ts": {
+    "mtime": 1734916398.8646383,
+    "hash": "13c2f6e3b66035380e2deac6b5176825"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\libs\\db.ts": {
+    "mtime": 1764881183.010014,
+    "hash": "de1d1d1a591ccd5ab0d16203790a2510"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\pages\\welcome.tsx": {
+    "mtime": 1764881183.0110133,
+    "hash": "9b3f5d6c835b0755732503d5f1311193"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\services\\baseService.ts": {
+    "mtime": 1734916398.8720255,
+    "hash": "a139079078091fa1761b73fdf641937f"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\services\\indexedDB.ts": {
+    "mtime": 1771118055.4808578,
+    "hash": "a3c2a2bee5a7f6ef275ae6351f49d0e6"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\services\\notificationService.ts": {
+    "mtime": 1771120442.4390168,
+    "hash": "662d7f34e4f55f27b3fa2e397183f8b5"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\services\\showService.ts": {
+    "mtime": 1771115344.1072426,
+    "hash": "df4cce788735b2eda466163d9a9e98c7"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\stores\\search.ts": {
+    "mtime": 1764881183.0140114,
+    "hash": "cfcfb9eb7d8899a99652c240786ce0d6"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\types\\index.ts": {
+    "mtime": 1764881183.0150113,
+    "hash": "ee7ea10caf27d0a1c795ac7870ee28a4"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\types\\enums\\genre.ts": {
+    "mtime": 1726376403.147879,
+    "hash": "b351cc0bb79bc121d756c9d3b3fe8aa9"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\types\\enums\\request-type.ts": {
+    "mtime": 1731779879.8335104,
+    "hash": "1b5bbbba6e00600659473edceef705f1"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\src\\utils\\index.ts": {
+    "mtime": 1734916398.8770304,
+    "hash": "4e5f58747e3c4990cc847fc47a99d443"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\types\\next-pwa.d.ts": {
+    "mtime": 1764881183.017011,
+    "hash": "3778cb23e47e668cbfe93c220cdb21d9"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\CLAUDE.md": {
+    "mtime": 1779157750.6782355,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\README.md": {
+    "mtime": 1764881188.9111645,
+    "hash": "6a6b3e5a1f735d245676e6fa82f6489e"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\google5c786cb7e2e7ae45.html": {
+    "mtime": 1764881182.9705985,
+    "hash": "a398dc1293d0e5f520665143edef58ba"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\screenshots\\README.txt": {
+    "mtime": 1771117891.3715994,
+    "hash": "1ddc49d8143d5538f289cc31c2b6d953"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\file.svg": {
+    "mtime": 1729965966.8962617,
+    "hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\globe.svg": {
+    "mtime": 1729965966.8962617,
+    "hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\icon-192x192.svg": {
+    "mtime": 1764881182.971617,
+    "hash": "94c7d64400dc6cb54f1a72f70313ab24"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\icon-512x512.svg": {
+    "mtime": 1764881182.9726157,
+    "hash": "cecdaee8efe0b47e6ba1bade4684ea08"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\next.svg": {
+    "mtime": 1729965966.8962617,
+    "hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\vercel.svg": {
+    "mtime": 1729965966.8962617,
+    "hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\welcome.jpg": {
+    "mtime": 1729999733.7932262,
+    "hash": "55edd5b0921a5759b42bdcf050e29076"
+  },
+  "C:\\Users\\felip\\Documents\\PLATZI\\React\\movie-nextjs-app\\public\\window.svg": {
+    "mtime": 1729965966.8962617,
+    "hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}

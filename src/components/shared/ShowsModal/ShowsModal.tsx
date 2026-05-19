@@ -2,18 +2,10 @@
 
 import ShowsService from "app/services/showService";
 import { MediaType, Movie, Show } from "app/types";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { FaPlay } from "react-icons/fa";
 import styles from "./ShowsModal.module.sass";
-
-// Dynamically import ReactPlayer to avoid SSR issues
-const ReactPlayer = dynamic(() => import("react-player"), {
-  ssr: false,
-  loading: () => <div>Loading player...</div>,
-}) as any;
 
 export const ShowModal = ({
   movie,
@@ -26,63 +18,44 @@ export const ShowModal = ({
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
-
-  // state for video player
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showTrailer, setShowTrailer] = useState(false);
-  const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
-  const [showTrailerAfterDelay, setShowTrailerAfterDelay] = useState(false);
+  const [trailerKey, setTrailerKey] = useState<string | null>(null);
 
   const handleClose = () => {
     setIsVisible(false);
     onCloseAction();
   };
-  const handlePlay = () => {
-    if (showTrailer && trailerUrl) {
-      setIsPlaying((prev) => !prev);
-    }
-  };
 
-  // console.log("[ShowModal] Movie: ", movie, movie.media_type);
   const showMediaType = movie.media_type || mediaType;
-  // console.log("[ShowModal] Show media type: ", showMediaType, movie.media_type);
 
   useEffect(() => {
     const details = async () => {
       const data = await ShowsService.fetchShowDetails(
         movie.id,
-        mediaType || movie.media_type
+        mediaType || movie.media_type,
       );
-      // console.log("[MovieModal] Movie details: ", data);
-      // console.log("[MovieModal] Movie link: ", `/movies/${movie.id}?mediaType=${movie.media_type ?? ""}`);
       setMovieDetails(data);
     };
     details();
 
-    // get the trailer
-    const trailer = async () => {
-      // const mediaType = movie.media_type === "tv" ? MediaType.TV : MediaType.MOVIE;
+    const fetchTrailer = async () => {
       const data = await ShowsService.fetchShowTrailer(showMediaType, movie.id);
-      // console.log("[MovieModal] Movie trailer: ", mediaType , movie.media_type);
-      if (data.results.length) {
-        setShowTrailer(true);
-        setTrailerUrl(`https://www.youtube.com/embed/${data.results[0].key}`);
+      const trailer =
+        data.results.find(
+          (v: { type: string; site: string; key: string }) =>
+            v.type === "Trailer" && v.site === "YouTube",
+        ) || data.results[0];
+      if (trailer?.key) {
+        setTrailerKey(trailer.key);
       }
     };
-    trailer();
+    fetchTrailer();
   }, [movie, mediaType, showMediaType]);
 
-  useEffect(() => {
-    if (showTrailer) {
-      const timer = setTimeout(() => {
-        setShowTrailerAfterDelay(true);
-        setIsPlaying(true); // Automatically play the trailer
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [showTrailer]);
-
   if (!isVisible) return null;
+
+  const embedUrl = trailerKey
+    ? `https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=0&rel=0&modestbranding=1`
+    : null;
 
   return createPortal(
     <>
@@ -97,40 +70,28 @@ export const ShowModal = ({
         <div className={styles.scrollContainer}>
           <div
             className={styles.imageContainer}
-            style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
-            }}
+            style={
+              embedUrl
+                ? undefined
+                : {
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+                  }
+            }
           >
-            {showTrailerAfterDelay && trailerUrl ? (
-              <ReactPlayer
-                url={trailerUrl}
-                playing={isPlaying}
+            {embedUrl ? (
+              <iframe
+                src={embedUrl}
                 width="100%"
                 height="100%"
-                light={false}
-                controls
-                volume={0.5}
-                className={styles.reactPlayer}
-                onPause={handlePlay}
-                config={{
-                  youtube: {
-                    playerVars: {
-                      modestbranding: 1,
-                      rel: 0,
-                    },
-                  },
-                }}
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+                style={{ border: "none", display: "block" }}
+                title={movie.title || movie.name || "Trailer"}
               />
             ) : (
-              <>
-                {!isPlaying && (
-                  <div className={styles.playButtonContainer}>
-                    <button className={styles.playButton} onClick={handlePlay}>
-                      <FaPlay className={styles.playIcon} /> Play
-                    </button>
-                  </div>
-                )}
-              </>
+              <div className={styles.playButtonContainer}>
+                <span>Loading trailer...</span>
+              </div>
             )}
           </div>
           <h1 className={styles.title}>{movie.title || movie.name}</h1>
@@ -160,6 +121,6 @@ export const ShowModal = ({
         </div>
       </div>
     </>,
-    document.body
+    document.body,
   );
 };
