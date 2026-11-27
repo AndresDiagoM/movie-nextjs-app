@@ -11,7 +11,8 @@
     "lint:all": "pnpm biome:check && next lint",
     "biome:check": "biome check .",
     "biome:fix": "biome check --write .",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "preview:static": "node scripts/static-preview.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

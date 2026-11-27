@@ -38,3 +38,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Craft Anything working files
+/capture/
+/checks/
+/inbox/
+/investigation.cany/
+/agent-session.jsonl
+/build-activity.log
+/craft.json
+/feed.json
+/usage.json

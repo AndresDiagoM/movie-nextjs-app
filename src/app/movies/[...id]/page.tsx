@@ -1,14 +1,10 @@
 "use client";
 
-import { VideoPlayer } from "app/components/shared/VideoPlayer";
-import { env } from "app/env.mjs";
+import { ServerPlayer } from "app/components/shared/ServerPlayer";
 import ShowsService from "app/services/showService";
 import { MediaType, Show } from "app/types";
 import { getSession } from "next-auth/react";
 import React from "react";
-
-const StreamingService = env.NEXT_PUBLIC_VIDSRC_API_URL;
-const StreamingService2 = env.NEXT_PUBLIC_VIDSRC2_API_URL;
 
 interface MoviesProps {
   // Next.js App Router - params is a Promise<{ id: string }>
@@ -25,11 +21,6 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
   const [mediaType, setMediaType] = React.useState<string>("");
   const [show, setShow] = React.useState<Show | null>(null);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentService, setCurrentService] =
-    React.useState<string>(StreamingService);
-
-  // handle video url
-  const [videoUrl, setVideoUrl] = React.useState<string>("");
 
   React.useEffect(() => {
     const resolveParams = async () => {
@@ -53,13 +44,12 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
           mediaType as MediaType
         );
         setShow(showDetails);
-        setVideoUrl(`${currentService}${mediaType}/${showDetails?.id}`);
       } finally {
         setIsLoading(false);
       }
     };
     getShowDetails();
-  }, [id, mediaType, currentService]);
+  }, [id, mediaType]);
 
   // Force scroll reset and ensure body scroll is enabled
   React.useEffect(() => {
@@ -132,11 +122,6 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
 
   console.log("Params: ", id, " Media Type: ", mediaType);
   console.log("Show: ", show);
-  console.log("Video URL: ", videoUrl);
-
-  const handleServiceChange = (service: string) => {
-    setCurrentService(service);
-  };
 
   return (
     <div className="w-full min-h-screen">
@@ -159,25 +144,12 @@ const MoviesId: React.FC<MoviesProps> = ({ params, searchParams }) => {
         </h2>
 
         {/* Video Player */}
-        <div className="flex justify-center mt-4 rounded-lg overflow-hidden">
-          <VideoPlayer url={videoUrl} />
-        </div>
+        <ServerPlayer
+          title={show.title || show.name || undefined}
+          tmdbId={show.id}
+          mediaType="movie"
+        />
 
-        {/* Buttons to switch streaming services */}
-        <div className="flex flex-col pt-4 mt-4 justify-center items-center text-center space-y-4 text-white">
-          <button
-            onClick={() => handleServiceChange(StreamingService)}
-            className="px-4 py-2 bg-gray-800 rounded w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] text-sm sm:text-base md:text-lg lg:text-xl"
-          >
-            Streaming Service 1
-          </button>
-          <button
-            onClick={() => handleServiceChange(StreamingService2)}
-            className="px-4 py-2 bg-gray-800 rounded w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] text-sm sm:text-base md:text-lg lg:text-xl"
-          >
-            Streaming Service 2
-          </button>
-        </div>
 
         {/* Show Details */}
         <p className="mt-4 text-lg text-center">

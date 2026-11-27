@@ -58,24 +58,11 @@ export default function RootLayout({
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#000000" />
 
-        <link rel="apple-touch-icon" href="/icon-152x152.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/icon-152x152.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="/icon-192x192.svg" />
 
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/icon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/icon-16x16.png"
-        />
+        <link rel="icon" type="image/svg+xml" href="/icon-192x192.svg" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/icon-512x512.png" color="#000000" />
+        <link rel="mask-icon" href="/icon-512x512.svg" color="#000000" />
         <link rel="shortcut icon" href="/favicon.ico" />
 
         <meta name="twitter:card" content="summary" />

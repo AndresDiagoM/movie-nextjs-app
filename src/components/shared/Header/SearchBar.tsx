@@ -71,6 +71,8 @@ const SearchBar = forwardRef<SearchBarRef, object>((props, ref) => {
     <div className="relative" ref={searchRef}>
       {!searchStore.isOpen && (
         <button
+          type="button"
+          aria-label="Search"
           onClick={() => searchStore.setOpen(true)}
           className="flex ml-0 bg-transparent text-black py-2 px-0 rounded-full"
         >

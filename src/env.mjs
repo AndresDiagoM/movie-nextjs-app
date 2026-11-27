@@ -28,6 +28,10 @@ export const env = createEnv({
 		NEXT_PUBLIC_TMDB_TOKEN: z.string(),
 		NEXT_PUBLIC_VIDSRC_API_URL: z.string().url(),
 		NEXT_PUBLIC_VIDSRC2_API_URL: z.string().url(),
+		// JSON list of extra player servers: [{"name","movie","tv"}] with {id} {season} {episode}
+		NEXT_PUBLIC_EXTRA_SERVERS: z.string().optional(),
+		// JSON list of extra Live TV channels: [{"name","category","embedUrl"}]
+		NEXT_PUBLIC_EXTRA_CHANNELS: z.string().optional(),
 		NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().optional(),
 		NEXT_PUBLIC_SITE_NAME: z.string(),
 		NEXT_PUBLIC_TWITTER: z.string().url().optional(),
@@ -62,6 +66,8 @@ export const env = createEnv({
 		// Streaming services
 		NEXT_PUBLIC_VIDSRC_API_URL: process.env.NEXT_PUBLIC_VIDSRC_API_URL,
 		NEXT_PUBLIC_VIDSRC2_API_URL: process.env.NEXT_PUBLIC_VIDSRC2_API_URL,
+		NEXT_PUBLIC_EXTRA_SERVERS: process.env.NEXT_PUBLIC_EXTRA_SERVERS,
+		NEXT_PUBLIC_EXTRA_CHANNELS: process.env.NEXT_PUBLIC_EXTRA_CHANNELS,
 
 		// Google Analytics
 		NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:

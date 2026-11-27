@@ -18,6 +18,19 @@ declare global {
   }
 }
 
+const DISMISSED_KEY = "pwa_install_dismissed_at";
+const DISMISS_DAYS = 14;
+
+// "Not now" hides the prompt for two weeks, not just until the next page load.
+const wasDismissedRecently = () => {
+  try {
+    const at = Number(localStorage.getItem(DISMISSED_KEY));
+    return at > 0 && Date.now() - at < DISMISS_DAYS * 86_400_000;
+  } catch {
+    return false;
+  }
+};
+
 export default function PWAInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
@@ -29,7 +42,7 @@ export default function PWAInstallPrompt() {
       e.preventDefault();
       // Stash the event so it can be triggered later
       setDeferredPrompt(e);
-      setShowInstallPrompt(true);
+      setShowInstallPrompt(!wasDismissedRecently());
     };
 
     window.addEventListener("beforeinstallprompt", handler);
@@ -69,6 +82,11 @@ export default function PWAInstallPrompt() {
   };
 
   const handleDismiss = () => {
+    try {
+      localStorage.setItem(DISMISSED_KEY, String(Date.now()));
+    } catch {
+      // Storage can be blocked; the prompt then only hides until the next load.
+    }
     setShowInstallPrompt(false);
   };
 
