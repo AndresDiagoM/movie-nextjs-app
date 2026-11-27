@@ -1,14 +1,10 @@
 "use client";
 
-import { VideoPlayer } from "app/components/shared/VideoPlayer";
-import { env } from "app/env.mjs";
+import { ServerPlayer } from "app/components/shared/ServerPlayer";
 import ShowsService from "app/services/showService";
 import { MediaType, Show } from "app/types";
 import { getSession } from "next-auth/react";
 import React from "react";
-
-const StreamingService = env.NEXT_PUBLIC_VIDSRC_API_URL;
-const StreamingService2 = env.NEXT_PUBLIC_VIDSRC2_API_URL;
 
 interface SeriesProps {
   params: Promise<{ id: string }>;
@@ -24,14 +20,13 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
   const [mediaType, setMediaType] = React.useState<string>("");
   const [show, setShow] = React.useState<Show | null>(null);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentService, setCurrentService] =
-    React.useState<string>(StreamingService);
-
-  // handle video url
-  const [videoUrl, setVideoUrl] = React.useState<string>("");
   const [selectedSeason, setSelectedSeason] = React.useState<number | null>(
     null
   );
+  const [playing, setPlaying] = React.useState<{
+    season: number;
+    episode: number;
+  }>({ season: 1, episode: 1 });
 
   React.useEffect(() => {
     const resolveParams = async () => {
@@ -55,13 +50,12 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
           mediaType as MediaType
         );
         setShow(showDetails);
-        setVideoUrl(`${currentService}${mediaType}/${showDetails?.id}`);
       } finally {
         setIsLoading(false);
       }
     };
     getShowDetails();
-  }, [id, mediaType, currentService]);
+  }, [id, mediaType]);
 
   // Force scroll reset and ensure body scroll is enabled
   React.useEffect(() => {
@@ -136,25 +130,14 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
   // console.log("Show: ", show);
   // console.log("Video URL: ", videoUrl);
 
-  const handleServiceChange = (service: string) => {
-    setCurrentService(service);
-  };
-
   const handleSeasonSelect = (seasonNumber: number) => {
     setSelectedSeason(seasonNumber === selectedSeason ? null : seasonNumber);
   };
 
   const handleEpisodeSelect = (episodeNumber: number) => {
-    if (currentService.includes("vidsrc.cc")) {
-      setVideoUrl(
-        `${currentService}${mediaType}/${show?.id}/${selectedSeason}/${episodeNumber}`
-      );
-    } else if (currentService.includes("vidsrc.xyz")) {
-      setVideoUrl(
-        `${currentService}${mediaType}/${show?.id}/${selectedSeason}-${episodeNumber}`
-      );
-    }
-    console.log("[MOVIES] Search Episode Season and Number: ", videoUrl);
+    if (!selectedSeason) return;
+    setPlaying({ season: selectedSeason, episode: episodeNumber });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -178,9 +161,16 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
         </h2>
 
         {/* Video Player */}
-        <div className="flex justify-center mt-4 rounded-lg overflow-hidden">
-          <VideoPlayer url={videoUrl} />
-        </div>
+        <ServerPlayer
+          title={show.name || show.title || undefined}
+          tmdbId={show.id}
+          mediaType="tv"
+          season={playing.season}
+          episode={playing.episode}
+        />
+        <p className="mt-3 text-center text-sm text-white/70">
+          Now playing: Season {playing.season} · Episode {playing.episode}
+        </p>
 
         {/* show number of seasons, and episodes */}
         <div className="pt-4 mt-4">
@@ -223,7 +213,12 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
                       <button
                         key={i}
                         onClick={() => handleEpisodeSelect(i + 1)}
-                        className="px-3 py-2 bg-gray-500 text-white rounded hover:bg-gray-400 text-sm"
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          playing.season === selectedSeason &&
+                          playing.episode === i + 1
+                            ? "bg-live-accent text-white"
+                            : "bg-white/10 text-white hover:bg-white/20"
+                        }`}
                       >
                         Episode {i + 1}
                       </button>
@@ -234,21 +229,6 @@ const SeriesId: React.FC<SeriesProps> = ({ params, searchParams }) => {
           </div>
         </div>
 
-        {/* Buttons to switch streaming services */}
-        <div className="flex flex-col pt-4 mt-4 justify-center items-center text-center space-y-4 text-white">
-          <button
-            onClick={() => handleServiceChange(StreamingService)}
-            className="px-4 py-2 bg-gray-800 rounded w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] text-sm sm:text-base md:text-lg lg:text-xl"
-          >
-            Streaming Service 1
-          </button>
-          <button
-            onClick={() => handleServiceChange(StreamingService2)}
-            className="px-4 py-2 bg-gray-800 rounded w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] text-sm sm:text-base md:text-lg lg:text-xl"
-          >
-            Streaming Service 2
-          </button>
-        </div>
 
         {/* Show Details */}
         <p className="mt-4 text-lg text-center">

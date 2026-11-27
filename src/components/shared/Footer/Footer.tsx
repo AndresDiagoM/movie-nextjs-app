@@ -8,6 +8,7 @@ export const Footer = () => {
       <footer className="relative bottom-0 pt-5 p-2 w-full flex flex-row flex-wrap gap-4 justify-center items-center text-sm">
         <a
           href="https://www.linkedin.com/in/andres-felipe-diago-matta/"
+          aria-label="LinkedIn"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-gray-400"
@@ -16,6 +17,7 @@ export const Footer = () => {
         </a>
         <a
           href="https://github.com/AndresDiagoM"
+          aria-label="GitHub"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-gray-400"
@@ -24,6 +26,7 @@ export const Footer = () => {
         </a>
         <a
           href="https://andresdiagom.github.io/"
+          aria-label="Personal website"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-gray-400"
@@ -32,6 +35,7 @@ export const Footer = () => {
         </a>
         <a
           href="https://x.com/AndresDmatta"
+          aria-label="X (Twitter)"
           target="_blank"
           rel="noopener noreferrer"
         >
